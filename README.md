@@ -5,6 +5,13 @@ brain teasers, English and Hindi text, interaction-specific answer validation,
 and locally saved player progress. It is an original project and does not
 include assets or copied level text from another game.
 
+## Latest Android release
+
+Download the [Mind Twist v1.0.1 APK](https://github.com/bijaykumarceh-dev/mind-game/releases/download/v1.0.1/app-release.apk)
+or visit the [GitHub Releases page](https://github.com/bijaykumarceh-dev/mind-game/releases).
+This APK is release-mode but uses the repository's debug signing setup; use it
+for sideloading/testing, not as a Play Store production upload.
+
 > **Project status:** this repository contains a playable game prototype. The
 > app, bundled puzzle data, tests, and local progress work offline. Real
 > in-app purchases, production AdMob configuration/consent, and production
