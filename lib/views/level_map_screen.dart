@@ -36,22 +36,31 @@ class LevelMapScreen extends StatelessWidget {
                 backgroundColor: completed
                     ? AppTheme.successColor
                     : unlocked
-                        ? AppTheme.primaryColor
-                        : AppTheme.surfaceColor,
+                    ? AppTheme.primaryColor
+                    : AppTheme.surfaceColor,
                 child: Icon(
                   completed
                       ? Icons.check_rounded
                       : unlocked
-                          ? Icons.extension_rounded
-                          : Icons.lock_rounded,
+                      ? Icons.extension_rounded
+                      : Icons.lock_rounded,
                   color: Colors.white,
                 ),
               ),
               title: Text('${text.translate('level')} ${level.id}'),
-              subtitle: Text(
-                progress.languageCode == 'hi'
-                    ? level.category.nameHi
-                    : level.category.nameEn,
+              subtitle: Row(
+                children: [
+                  Icon(level.category.icon, size: 14, color: Colors.white54),
+                  const SizedBox(width: 6),
+                  Flexible(
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      progress.languageCode == 'hi'
+                          ? level.category.nameHi
+                          : level.category.nameEn,
+                    ),
+                  ),
+                ],
               ),
               trailing: completed
                   ? Text(
@@ -62,10 +71,10 @@ class LevelMapScreen extends StatelessWidget {
               enabled: unlocked,
               onTap: unlocked
                   ? () => Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => GameScreen(levelId: level.id),
-                        ),
-                      )
+                      MaterialPageRoute<void>(
+                        builder: (_) => GameScreen(levelId: level.id),
+                      ),
+                    )
                   : null,
             ),
           );

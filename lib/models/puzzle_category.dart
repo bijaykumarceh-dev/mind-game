@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 /// Level categories for filtering and progressive themes.
 enum PuzzleCategory {
   logic,
@@ -37,7 +39,7 @@ extension PuzzleCategoryExtension on PuzzleCategory {
       case PuzzleCategory.logic:
         return 'तर्क और दिमाग';
       case PuzzleCategory.observation:
-        return 'तेज नज़र';
+        return 'तेज़ नज़र';
       case PuzzleCategory.trickPhysics:
         return 'ट्रिक और भौतिकी';
       case PuzzleCategory.mathNumbers:
@@ -50,6 +52,28 @@ extension PuzzleCategoryExtension on PuzzleCategory {
         return 'मल्टी-स्टेप मास्टर';
       case PuzzleCategory.positioning:
         return 'स्थानिक और स्थिति';
+    }
+  }
+
+  /// Icon used anywhere a category needs a quick visual cue.
+  IconData get icon {
+    switch (this) {
+      case PuzzleCategory.logic:
+        return Icons.psychology_alt_rounded;
+      case PuzzleCategory.observation:
+        return Icons.visibility_rounded;
+      case PuzzleCategory.trickPhysics:
+        return Icons.auto_awesome_rounded;
+      case PuzzleCategory.mathNumbers:
+        return Icons.calculate_rounded;
+      case PuzzleCategory.patternRecognition:
+        return Icons.grid_view_rounded;
+      case PuzzleCategory.memoryTimed:
+        return Icons.timer_rounded;
+      case PuzzleCategory.multiStepMaster:
+        return Icons.stairs_rounded;
+      case PuzzleCategory.positioning:
+        return Icons.open_with_rounded;
     }
   }
 }

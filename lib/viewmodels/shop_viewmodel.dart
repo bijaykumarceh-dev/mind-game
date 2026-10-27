@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../core/constants/app_constants.dart';
 import '../services/ad_service.dart';
 import 'user_progress_viewmodel.dart';
 
@@ -6,10 +8,7 @@ class ShopViewModel extends ChangeNotifier {
   final UserProgressViewModel userProgressVM;
   final AdService adService;
 
-  ShopViewModel({
-    required this.userProgressVM,
-    required this.adService,
-  });
+  ShopViewModel({required this.userProgressVM, required this.adService});
 
   bool buyHintsWithCoins() {
     if (userProgressVM.spendCoins(50)) {
@@ -19,21 +18,25 @@ class ShopViewModel extends ChangeNotifier {
     return false;
   }
 
-  void watchAdForCoins() {
+  /// Rewarded-ad coin grant. The reward only fires from Google's verified
+  /// callback; a missing, dismissed, or failed ad reports [onUnavailable].
+  void watchAdForCoins({VoidCallback? onReward, VoidCallback? onUnavailable}) {
     adService.showRewardedAd(
-      onRewarded: (reward) {
-        userProgressVM.addCoins(30);
+      onRewarded: (_) {
+        userProgressVM.addCoins(AppConstants.adRewardCoins);
+        onReward?.call();
       },
-      onAdClosedOrFailed: () {},
+      onAdClosedOrFailed: () => onUnavailable?.call(),
     );
   }
 
-  void watchAdForHints() {
+  void watchAdForHints({VoidCallback? onReward, VoidCallback? onUnavailable}) {
     adService.showRewardedAd(
-      onRewarded: (reward) {
-        userProgressVM.addHints(2);
+      onRewarded: (_) {
+        userProgressVM.addHints(AppConstants.adRewardHints);
+        onReward?.call();
       },
-      onAdClosedOrFailed: () {},
+      onAdClosedOrFailed: () => onUnavailable?.call(),
     );
   }
 }

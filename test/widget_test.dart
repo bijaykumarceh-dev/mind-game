@@ -9,8 +9,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('Home launches a puzzle and solves a level',
-      (WidgetTester tester) async {
+  testWidgets('Home launches a puzzle and solves a level', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import '../core/constants/app_constants.dart';
 
 class AdService {
@@ -7,11 +10,19 @@ class AdService {
   InterstitialAd? _interstitialAd;
   RewardedAd? _rewardedAd;
   int _completedLevelsSinceAd = 0;
+  final Completer<void> _initialization = Completer<void>();
 
   bool get isInitialized => _isInitialized;
 
+  /// Completes once the initialization attempt has finished, successfully or
+  /// not. Widgets that need ads can await this instead of racing startup.
+  Future<void> get ready => _initialization.future;
+
   Future<void> initialize() async {
-    if (kIsWeb) return;
+    if (kIsWeb) {
+      if (!_initialization.isCompleted) _initialization.complete();
+      return;
+    }
     try {
       await MobileAds.instance.initialize();
       _isInitialized = true;
@@ -19,6 +30,8 @@ class AdService {
       _loadRewardedAd();
     } catch (e) {
       debugPrint('AdMob initialization exception: $e');
+    } finally {
+      if (!_initialization.isCompleted) _initialization.complete();
     }
   }
 
@@ -31,18 +44,19 @@ class AdService {
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           _interstitialAd = ad;
-          _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              _interstitialAd = null;
-              _loadInterstitialAd();
-            },
-            onAdFailedToShowFullScreenContent: (ad, error) {
-              ad.dispose();
-              _interstitialAd = null;
-              _loadInterstitialAd();
-            },
-          );
+          _interstitialAd!.fullScreenContentCallback =
+              FullScreenContentCallback(
+                onAdDismissedFullScreenContent: (ad) {
+                  ad.dispose();
+                  _interstitialAd = null;
+                  _loadInterstitialAd();
+                },
+                onAdFailedToShowFullScreenContent: (ad, error) {
+                  ad.dispose();
+                  _interstitialAd = null;
+                  _loadInterstitialAd();
+                },
+              );
         },
         onAdFailedToLoad: (error) {
           debugPrint('InterstitialAd failed to load: $error');

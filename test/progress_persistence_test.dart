@@ -7,6 +7,8 @@ import 'package:mind_twist/viewmodels/user_progress_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('User Progress & Persistence Tests', () {
     late PersistenceService persistence;
 
@@ -15,14 +17,17 @@ void main() {
       persistence = await PersistenceService.init();
     });
 
-    test('Initial user progress has 50 coins, 3 hints, and Level 1 unlocked', () {
-      final progress = persistence.loadProgress();
-      expect(progress.coins, equals(50));
-      expect(progress.hintsInventory, equals(3));
-      expect(progress.unlockedLevelMax, equals(1));
-      expect(progress.isLevelUnlocked(1), isTrue);
-      expect(progress.isLevelUnlocked(2), isFalse);
-    });
+    test(
+      'Initial user progress has 50 coins, 3 hints, and Level 1 unlocked',
+      () {
+        final progress = persistence.loadProgress();
+        expect(progress.coins, equals(50));
+        expect(progress.hintsInventory, equals(3));
+        expect(progress.unlockedLevelMax, equals(1));
+        expect(progress.isLevelUnlocked(1), isTrue);
+        expect(progress.isLevelUnlocked(2), isFalse);
+      },
+    );
 
     test('Saving and loading progress persists state changes', () async {
       final progress = persistence.loadProgress();

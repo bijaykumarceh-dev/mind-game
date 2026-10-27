@@ -9,7 +9,8 @@ final List<PuzzleLevel> levels51To75 = [
     category: PuzzleCategory.logic,
     interactionType: InteractionType.multipleChoice,
     questionEn: 'Which weighs more: 1 kg of feathers or 1 kg of iron rocks?',
-    questionHi: 'किसका वजन ज्यादा होगा: 1 किग्रा पंख या 1 किग्रा लोहे के पत्थर?',
+    questionHi:
+        'किसका वजन ज्यादा होगा: 1 किग्रा पंख या 1 किग्रा लोहे के पत्थर?',
     instructionEn: 'Compare mass values.',
     instructionHi: 'द्रव्यमान (मात्रा) की तुलना करें।',
     explanationEn: 'Both are exactly 1 kg, so they weigh the SAME!',
@@ -17,15 +18,25 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Look at the number 1 kg.',
       'Weight is specified identical.',
-      'Select "Both Weigh the Same".'
+      'Select "Both Weigh the Same".',
     ],
     hintsHi: [
       '1 किग्रा संख्या पर ध्यान दें।',
       'वजन दोनों का समान दिया गया है।',
-      '"दोनों का वजन बराबर है" चुनें।'
+      '"दोनों का वजन बराबर है" चुनें।',
     ],
-    options: ['1 kg Feathers', '1 kg Iron Rocks', 'Both Weigh the Same', 'Depends on gravity'],
-    optionsHi: ['१ किग्रा पंख', '१ किग्रा लोहा', 'दोनों का वजन बराबर है', 'गुरुत्वाकर्षण पर निर्भर है'],
+    options: [
+      '1 kg Feathers',
+      '1 kg Iron Rocks',
+      'Both Weigh the Same',
+      'Depends on gravity',
+    ],
+    optionsHi: [
+      '१ किग्रा पंख',
+      '१ किग्रा लोहा',
+      'दोनों का वजन बराबर है',
+      'गुरुत्वाकर्षण पर निर्भर है',
+    ],
     solutionIndex: 2,
   ),
 
@@ -40,15 +51,11 @@ final List<PuzzleLevel> levels51To75 = [
     instructionHi: 'नकली नोट पर चश्मा बना हुआ है!',
     explanationEn: 'Bill #2 had cool sunglasses painted on the portrait!',
     explanationHi: 'नोट #2 पर बने चित्र में चश्मा पहनाया गया था!',
-    hintsEn: [
-      'Look at portrait faces.',
-      'Note on top right.',
-      'Tap Bill 2.'
-    ],
+    hintsEn: ['Look at portrait faces.', 'Note on top right.', 'Tap Bill 2.'],
     hintsHi: [
       'चित्रों के चेहरों को देखें।',
       'ऊपर दाईं ओर का नोट।',
-      'नोट 2 पर टैप करें।'
+      'नोट 2 पर टैप करें।',
     ],
     solutionIndex: 1,
     extraData: {'itemsCount': 4},
@@ -68,12 +75,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Cold ice reduces temperature.',
       'Ice bowl is on right.',
-      'Drag Ice -> Hot Soup Bowl.'
+      'Drag Ice -> Hot Soup Bowl.',
     ],
     hintsHi: [
       'बर्फ तापमान कम करती है।',
       'बर्फ की कटोरी दाईं तरफ है।',
-      'बर्फ को सूप में डालें।'
+      'बर्फ को सूप में डालें।',
     ],
     dragSourceId: 'ice_cubes',
     dragTargetId: 'hot_soup',
@@ -90,16 +97,8 @@ final List<PuzzleLevel> levels51To75 = [
     instructionHi: 'अंग्रेजी में 7 (SEVEN) की वर्तनी सोचें!',
     explanationEn: 'SEVEN minus letter "S" becomes EVEN!',
     explanationHi: 'SEVEN (7) में से अक्षर "S" हटाने पर EVEN बन जाता है!',
-    hintsEn: [
-      'Spelling is S-E-V-E-N.',
-      'Remove S -> E-V-E-N.',
-      'Answer is 7.'
-    ],
-    hintsHi: [
-      'स्पेलिंग S-E-V-E-N है।',
-      'S हटाएं -> E-V-E-N।',
-      'उत्तर 7 है।'
-    ],
+    hintsEn: ['Spelling is S-E-V-E-N.', 'Remove S -> E-V-E-N.', 'Answer is 7.'],
+    hintsHi: ['स्पेलिंग S-E-V-E-N है।', 'S हटाएं -> E-V-E-N।', 'उत्तर 7 है।'],
     extraData: {'answer': '7'},
   ),
 
@@ -110,21 +109,21 @@ final List<PuzzleLevel> levels51To75 = [
     interactionType: InteractionType.positioning,
     questionEn: 'Put the missing puzzle piece into the jigsaw landscape!',
     questionHi: 'जिगसॉ परिदृश्य में गायब टुकड़ा सही जगह बैठाएं!',
-    instructionEn: 'Drag piece to coordinates (140, 160).',
-    instructionHi: 'टुकड़े को स्थिति (140, 160) पर लाएं।',
+    instructionEn: 'Drag the piece onto the marked circle.',
+    instructionHi: 'टुकड़े को खींचकर चिह्नित गोल निशान पर लाएं।',
     explanationEn: 'Click! The mountain landscape image is now 100% complete!',
     explanationHi: 'पहेली का टुकड़ा बैठ गया और तस्वीर पूरी हो गई!',
     hintsEn: [
       'Match mountain peak contour.',
       'Move left-center.',
-      'Target position is (140, 160).'
+      'Aim for the outlined circle.',
     ],
     hintsHi: [
       'पहाड़ की चोटी के आकार से मिलाएं।',
       'बाईं-मध्य स्थिति में लाएं।',
-      'लक्ष्य (140, 160) है।'
+      'लक्ष्य घेरा हुआ गोल निशान है।',
     ],
-    positionTarget: {'x': 140.0, 'y': 160.0, 'tolerance': 35.0},
+    positionTarget: {'x': 0.48, 'y': 0.46, 'tolerance': 0.12},
   ),
 
   // Level 56
@@ -134,21 +133,31 @@ final List<PuzzleLevel> levels51To75 = [
     interactionType: InteractionType.multiStep,
     questionEn: 'Plant a fresh apple tree!',
     questionHi: 'सेब का एक नया पेड़ लगाएं!',
-    instructionEn: 'Step 1: Dig soil hole. Step 2: Put sapling. Step 3: Water plant.',
+    instructionEn:
+        'Step 1: Dig soil hole. Step 2: Put sapling. Step 3: Water plant.',
     instructionHi: 'चरण 1: गड्ढा खोदें। चरण 2: पौधा लगाएं। चरण 3: पानी दें।',
-    explanationEn: 'The sapling roots take hold and grow into a healthy young apple tree!',
+    explanationEn:
+        'The sapling roots take hold and grow into a healthy young apple tree!',
     explanationHi: 'पौधा मिट्टी में जम गया और बढ़कर हरा-भरा पेड़ बन गया!',
     hintsEn: [
       'Dig ground first.',
       'Place green sapling.',
-      'Finish with watering.'
+      'Finish with watering.',
     ],
-    hintsHi: [
-      'पहले गड्ढा खोदें।',
-      'पौधा लगाएं।',
-      'आखिर में पानी दें।'
-    ],
-    extraData: {'totalSteps': 3},
+    hintsHi: ['पहले गड्ढा खोदें।', 'पौधा लगाएं।', 'आखिर में पानी दें।'],
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Dig a hole in the soil',
+        'Place the sapling in the hole',
+        'Water the plant',
+      ],
+      'stepTextsHi': [
+        'मिट्टी में गड्ढा खोदें',
+        'गड्ढे में पौधा रखें',
+        'पौधे को पानी दें',
+      ],
+    },
   ),
 
   // Level 57
@@ -165,12 +174,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'You flip it to make decisions.',
       'Made of metal.',
-      'Select "Coin".'
+      'Select "Coin".',
     ],
     hintsHi: [
       'आप निर्णय लेने के लिए इसे उछालते हैं।',
       'धातु का बना होता है।',
-      '"सिक्का" चुनें।'
+      '"सिक्का" चुनें।',
     ],
     options: ['Snake', 'Coin', 'Kite', 'Comet'],
     optionsHi: ['सांप', 'सिक्का', 'पतंग', 'पुच्छल तारा'],
@@ -188,15 +197,11 @@ final List<PuzzleLevel> levels51To75 = [
     instructionHi: 'नुकीले कानों और मूंछों को देखें!',
     explanationEn: 'Cat #3 was napping curled up with small pointy ears!',
     explanationHi: 'बिल्ली #3 दुबक कर सो रही थी!',
-    hintsEn: [
-      'Pointy triangle ears.',
-      'Bottom left corner.',
-      'Tap Animal 3.'
-    ],
+    hintsEn: ['Pointy triangle ears.', 'Bottom left corner.', 'Tap Animal 3.'],
     hintsHi: [
       'त्रिकोण जैसे कान।',
       'नीचे बाएं कोने में।',
-      'जानवर 3 पर टैप करें।'
+      'जानवर 3 पर टैप करें।',
     ],
     solutionIndex: 2,
     extraData: {'itemsCount': 4},
@@ -216,12 +221,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Red (0) -> Yellow (1).',
       'Green (2) -> Blue (3) -> Red (0).',
-      'Sequence: [0, 1, 2, 3, 0]'
+      'Sequence: [0, 1, 2, 3, 0]',
     ],
     hintsHi: [
       'लाल (0) -> पीला (1)।',
       'हरा (2) -> नीला (3) -> लाल (0)।',
-      'क्रम: [0, 1, 2, 3, 0]'
+      'क्रम: [0, 1, 2, 3, 0]',
     ],
     targetSequence: [0, 1, 2, 3, 0],
   ),
@@ -235,17 +240,18 @@ final List<PuzzleLevel> levels51To75 = [
     questionHi: 'नाव को किनारे तक पहुंचाने के लिए हवा चलाएं!',
     instructionEn: 'Drag the fan behind the sailboat sails.',
     instructionHi: 'पंखे (Fan) को खींचकर नाव के पाल के पीछे लाएं।',
-    explanationEn: 'Whoosh! Strong artificial wind pushed the sailboat across the pond!',
+    explanationEn:
+        'Whoosh! Strong artificial wind pushed the sailboat across the pond!',
     explanationHi: 'पंखे की तेज़ हवा ने नाव को किनारे पहुंचा दिया!',
     hintsEn: [
       'Wind pushes sails.',
       'Fan generates wind stream.',
-      'Drag Fan -> Sailboat Sails.'
+      'Drag Fan -> Sailboat Sails.',
     ],
     hintsHi: [
       'हवा से पाल आगे बढ़ते हैं।',
       'पंखा हवा देता है।',
-      'पंखे को नाव के पीछे लाएं।'
+      'पंखे को नाव के पीछे लाएं।',
     ],
     dragSourceId: 'electric_fan',
     dragTargetId: 'sailboat_sail',
@@ -262,16 +268,8 @@ final List<PuzzleLevel> levels51To75 = [
     instructionHi: 'फाइबोनैचि नियम (पिछले दो पदों को जोड़ें)।',
     explanationEn: '8 + 13 = 21!',
     explanationHi: '8 + 13 = 21!',
-    hintsEn: [
-      'Add last two numbers.',
-      '8 plus 13.',
-      'Answer is 21.'
-    ],
-    hintsHi: [
-      'पिछले दो नंबरों को जोड़ें।',
-      '8 + 13।',
-      'उत्तर 21 है।'
-    ],
+    hintsEn: ['Add last two numbers.', '8 plus 13.', 'Answer is 21.'],
+    hintsHi: ['पिछले दो नंबरों को जोड़ें।', '8 + 13।', 'उत्तर 21 है।'],
     extraData: {'answer': '21'},
   ),
 
@@ -281,23 +279,30 @@ final List<PuzzleLevel> levels51To75 = [
     category: PuzzleCategory.logic,
     interactionType: InteractionType.multipleChoice,
     questionEn: 'What building has the most stories?',
-    questionHi: 'किस इमारत में सबसे ज्यादा स्टोरियाँ (कहानियां/मंजिलें) होती हैं?',
+    questionHi:
+        'किस इमारत में सबसे ज्यादा स्टोरियाँ (कहानियां/मंजिलें) होती हैं?',
     instructionEn: 'Think word pun (Stories = Tales/Books vs Floors)!',
-    instructionHi: 'शब्दों के खेल पर ध्यान दें (Stories = कहानियां vs मंजिलें)!',
+    instructionHi:
+        'शब्दों के खेल पर ध्यान दें (Stories = कहानियां vs मंजिलें)!',
     explanationEn: 'The Library contains thousands of stories (books)!',
     explanationHi: 'लाइब्रेरी (पुस्तकालय) में हज़ारों स्टोरियाँ (कहानियाँ/किताबें) होती हैं!',
     hintsEn: [
       'Where do you find thousands of books?',
       'Play on the word "Stories".',
-      'Select "Library".'
+      'Select "Library".',
     ],
     hintsHi: [
       'हज़ारों किताबें कहाँ मिलती हैं?',
       '"Stories" (कहानियों) के अर्थ पर सोचें।',
-      '"लाइब्रेरी" चुनें।'
+      '"लाइब्रेरी" चुनें।',
     ],
     options: ['Burj Khalifa', 'Empire State', 'Library', 'Hospital'],
-    optionsHi: ['बुर्ज खलीफा', 'एम्पायर स्टेट', 'लाइब्रेरी (पुस्तकालय)', 'अस्पताल'],
+    optionsHi: [
+      'बुर्ज खलीफा',
+      'एम्पायर स्टेट',
+      'लाइब्रेरी (पुस्तकालय)',
+      'अस्पताल',
+    ],
     solutionIndex: 2,
   ),
 
@@ -308,21 +313,21 @@ final List<PuzzleLevel> levels51To75 = [
     interactionType: InteractionType.positioning,
     questionEn: 'Place the cherry right on top of the ice cream sundae scoop!',
     questionHi: 'चेरी को आइसक्रीम सुंडे के बिल्कुल ऊपर रखें!',
-    instructionEn: 'Drag cherry to (170, 110).',
-    instructionHi: 'चेरी को खींचकर (170, 110) पर लाएं।',
+    instructionEn: 'Drag the cherry onto the marked circle.',
+    instructionHi: 'चेरी को खींचकर चिह्नित गोल निशान पर लाएं।',
     explanationEn: 'Yum! The cherry completes the delicious ice cream dessert!',
     explanationHi: 'वाह! चेरी लगते ही आइसक्रीम सुंडे तैयार हो गया!',
     hintsEn: [
       'Look at the top of the ice cream bowl.',
       'Center of top whipped cream peak.',
-      'Target position is (170, 110).'
+      'Aim for the outlined circle.',
     ],
     hintsHi: [
       'आइसक्रीम बाउल के ऊपरी हिस्से को देखें।',
       'क्रीम की चोटी पर रखें।',
-      'लक्ष्य स्थिति (170, 110) है।'
+      'लक्ष्य घेरा हुआ गोल निशान है।',
     ],
-    positionTarget: {'x': 170.0, 'y': 110.0, 'tolerance': 30.0},
+    positionTarget: {'x': 0.59, 'y': 0.31, 'tolerance': 0.10},
   ),
 
   // Level 64
@@ -339,12 +344,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Absorbent sponge cleans liquid.',
       'Sponge on lower shelf.',
-      'Drag Sponge -> Coffee Stain.'
+      'Drag Sponge -> Coffee Stain.',
     ],
     hintsHi: [
       'स्पंज तरल पदार्थ साफ करता है।',
       'स्पंज नीचे की शेल्फ पर है।',
-      'स्पंज को कॉफी के दाग पर लाएं।'
+      'स्पंज को कॉफी के दाग पर लाएं।',
     ],
     dragSourceId: 'cleaning_sponge',
     dragTargetId: 'coffee_stain',
@@ -357,21 +362,24 @@ final List<PuzzleLevel> levels51To75 = [
     interactionType: InteractionType.multiStep,
     questionEn: 'Construct a cozy wooden birdhouse!',
     questionHi: 'पक्षियों के लिए एक सुंदर लकड़ी का घोंसला (घर) बनाएं!',
-    instructionEn: 'Step 1: Assemble walls. Step 2: Attach roof. Step 3: Hang on branch.',
-    instructionHi: 'चरण 1: दीवारें जोड़ें। चरण 2: छत लगाएं। चरण 3: टहनी पर टांगें।',
-    explanationEn: 'Chirp chirp! A cute little bluebird moves into its new home!',
+    instructionEn:
+        'Step 1: Assemble walls. Step 2: Attach roof. Step 3: Hang on branch.',
+    instructionHi:
+        'चरण 1: दीवारें जोड़ें। चरण 2: छत लगाएं। चरण 3: टहनी पर टांगें।',
+    explanationEn:
+        'Chirp chirp! A cute little bluebird moves into its new home!',
     explanationHi: 'चीं-चीं! चिड़िया अपने नए घर में आ गई!',
-    hintsEn: [
-      'Walls first.',
-      'Roof on top.',
-      'Hang house on tree branch.'
-    ],
-    hintsHi: [
-      'पहले दीवारें।',
-      'फिर छत।',
-      'पेड़ की टहनी पर टांगें।'
-    ],
-    extraData: {'totalSteps': 3},
+    hintsEn: ['Walls first.', 'Roof on top.', 'Hang house on tree branch.'],
+    hintsHi: ['पहले दीवारें।', 'फिर छत।', 'पेड़ की टहनी पर टांगें।'],
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Assemble the walls',
+        'Attach the roof',
+        'Hang it on a branch',
+      ],
+      'stepTextsHi': ['दीवारें जोड़ें', 'छत लगाएं', 'टहनी पर टांगें'],
+    },
   ),
 
   // Level 66
@@ -388,12 +396,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Look at the letter spelling.',
       'Count occurrences of letter M.',
-      'Select "Letter M".'
+      'Select "Letter M".',
     ],
     hintsHi: [
       'अक्षर की स्पेलिंग देखें।',
       'M अक्षर की गिनती करें।',
-      '"अक्षर M" चुनें।'
+      '"अक्षर M" चुनें।',
     ],
     options: ['The Sun', 'Letter M', 'Full Moon', 'Leap Day'],
     optionsHi: ['सूर्य', 'अक्षर M', 'पूर्णिमा का चांद', 'लीप वर्ष का दिन'],
@@ -411,15 +419,11 @@ final List<PuzzleLevel> levels51To75 = [
     instructionHi: '8 किरणों वाली चमक को देखें।',
     explanationEn: 'Star #4 radiates 8 bright sparkle rays!',
     explanationHi: 'तारा #4 आठ चमकदार किरणें बिखेर रहा है!',
-    hintsEn: [
-      'Count ray spikes.',
-      'Star near center top.',
-      'Tap Star 4.'
-    ],
+    hintsEn: ['Count ray spikes.', 'Star near center top.', 'Tap Star 4.'],
     hintsHi: [
       'किरणों के कोनों को गिनें।',
       'ऊपर बीच का तारा।',
-      'तारा 4 पर टैप करें।'
+      'तारा 4 पर टैप करें।',
     ],
     solutionIndex: 3,
     extraData: {'itemsCount': 4},
@@ -436,16 +440,8 @@ final List<PuzzleLevel> levels51To75 = [
     instructionHi: 'तर्क: पहला अंक = A x B, दूसरा अंक = A + B.',
     explanationEn: '4 x 4 = 16, 4 + 4 = 8 -> Combine = 168!',
     explanationHi: '4 x 4 = 16, 4 + 4 = 8 -> मिलाकर = 168!',
-    hintsEn: [
-      'Multiply then Add.',
-      '4x4=16, 4+4=8.',
-      'Answer is 168.'
-    ],
-    hintsHi: [
-      'पहले गुणा फिर जोड़ें।',
-      '4x4=16, 4+4=8.',
-      'उत्तर 168 है।'
-    ],
+    hintsEn: ['Multiply then Add.', '4x4=16, 4+4=8.', 'Answer is 168.'],
+    hintsHi: ['पहले गुणा फिर जोड़ें।', '4x4=16, 4+4=8.', 'उत्तर 168 है।'],
     extraData: {'answer': '168'},
   ),
 
@@ -463,12 +459,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Air pump inflates rubber.',
       'Attach hose to valve.',
-      'Drag Air Pump -> Bicycle Valve.'
+      'Drag Air Pump -> Bicycle Valve.',
     ],
     hintsHi: [
       'पंप से हवा भरी जाती है।',
       'पाइप को वॉल्व से जोड़ें।',
-      'पंप को वॉल्व पर लाएं।'
+      'पंप को वॉल्व पर लाएं।',
     ],
     dragSourceId: 'air_pump',
     dragTargetId: 'bicycle_valve',
@@ -481,21 +477,21 @@ final List<PuzzleLevel> levels51To75 = [
     interactionType: InteractionType.positioning,
     questionEn: 'Place the bookmark inside the open storybook page!',
     questionHi: 'कहानी की खुली किताब में बुकमार्क रखें!',
-    instructionEn: 'Drag ribbon bookmark to (180, 140).',
-    instructionHi: 'बुकमार्क को खींचकर (180, 140) पर लाएं।',
+    instructionEn: 'Drag the ribbon bookmark onto the marked circle.',
+    instructionHi: 'बुकमार्क को खींचकर चिह्नित गोल निशान पर लाएं।',
     explanationEn: 'Your reading position is saved neatly!',
     explanationHi: 'आपका पढ़ा हुआ पन्ना सुरक्षित चिह्नित हो गया!',
     hintsEn: [
       'Look at the middle binding spine.',
       'Between the open pages seam.',
-      'Target position is (180, 140).'
+      'Target position is the outlined circle.',
     ],
     hintsHi: [
       'किताब की बीच वाली बाइंडिंग देखें।',
       'खुले पन्नों की सिलाई के बीच।',
-      'लक्ष्य स्थिति (180, 140) है।'
+      'लक्ष्य घेरा हुआ गोल निशान है।',
     ],
-    positionTarget: {'x': 180.0, 'y': 140.0, 'tolerance': 30.0},
+    positionTarget: {'x': 0.62, 'y': 0.40, 'tolerance': 0.10},
   ),
 
   // Level 71
@@ -506,20 +502,34 @@ final List<PuzzleLevel> levels51To75 = [
     questionEn: 'Prepare a delicious fresh fruit smoothie!',
     questionHi: 'ताज़ा फलों का स्वादिष्ट स्मूदी जूस बनाएं!',
     instructionEn: 'Step 1: Put fruits in blender. Step 2: Pour milk. Step 3: Press blend.',
-    instructionHi: 'चरण 1: मिक्सर में फल डालें। चरण 2: दूध डालें। चरण 3: मिक्सर चलाएं।',
-    explanationEn: 'Whirrr! A creamy strawberry smoothie is poured into a chilled glass!',
+    instructionHi:
+        'चरण 1: मिक्सर में फल डालें। चरण 2: दूध डालें। चरण 3: मिक्सर चलाएं।',
+    explanationEn:
+        'Whirrr! A creamy strawberry smoothie is poured into a chilled glass!',
     explanationHi: 'घर्र-घर्र! स्वादिष्ट स्ट्रॉबेरी स्मूदी बनकर तैयार हो गई!',
     hintsEn: [
       'Fruit first, liquid second.',
       'Press blend button at end.',
-      'Complete 3 steps.'
+      'Complete 3 steps.',
     ],
     hintsHi: [
       'पहले फल, फिर दूध।',
       'अंत में मिक्सर का बटन दबाएं।',
-      '3 चरणों को पूरा करें।'
+      '3 चरणों को पूरा करें।',
     ],
-    extraData: {'totalSteps': 3},
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Put the fruits in the blender',
+        'Pour in the milk',
+        'Press the blend button',
+      ],
+      'stepTextsHi': [
+        'मिक्सर में फल डालें',
+        'दूध डालें',
+        'मिक्सर का बटन दबाएं',
+      ],
+    },
   ),
 
   // Level 72
@@ -531,17 +541,18 @@ final List<PuzzleLevel> levels51To75 = [
     questionHi: 'मुझमें शहर हैं पर मकान नहीं, जंगल हैं पर पेड़ नहीं, नदियां हैं पर पानी नहीं। मैं कौन हूँ?',
     instructionEn: 'Think cartography!',
     instructionHi: 'नक्शों (मैप) के बारे में सोचें!',
-    explanationEn: 'A Map illustrates geographic features without physical structures!',
+    explanationEn:
+        'A Map illustrates geographic features without physical structures!',
     explanationHi: 'नक्शा (Map) ज़मीन की आकृतियों को दर्शाता है, बिना असली भौतिक चीजों के!',
     hintsEn: [
       'Used by travelers and navigators.',
       'Paper or digital representation.',
-      'Select "A Map".'
+      'Select "A Map".',
     ],
     hintsHi: [
       'यात्रियों द्वारा इस्तेमाल किया जाता है।',
       'कागज या स्क्रीन पर बना चित्र।',
-      '"नक्शा (Map)" चुनें।'
+      '"नक्शा (Map)" चुनें।',
     ],
     options: ['A Mirror', 'A Map', 'A Dream', 'A Painting'],
     optionsHi: ['दर्पण (शीशा)', 'नक्शा (Map)', 'एक सपना', 'तस्वीर'],
@@ -562,12 +573,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Hour hand points right.',
       'Minute hand points top.',
-      'Tap Clock 1.'
+      'Tap Clock 1.',
     ],
     hintsHi: [
       'छोटी सुई दाईं ओर।',
       'बड़ी सुई ऊपर की तरफ।',
-      'घड़ी 1 पर टैप करें।'
+      'घड़ी 1 पर टैप करें।',
     ],
     solutionIndex: 0,
     extraData: {'itemsCount': 4},
@@ -587,12 +598,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Sequence of digits: 3, 1, 4, 1, 5.',
       'Follow index order.',
-      'Sequence: [3, 1, 4, 1, 5]'
+      'Sequence: [3, 1, 4, 1, 5]',
     ],
     hintsHi: [
       'अंकों का क्रम: 3, 1, 4, 1, 5।',
       'क्रम का पालन करें।',
-      'क्रम: [3, 1, 4, 1, 5]'
+      'क्रम: [3, 1, 4, 1, 5]',
     ],
     targetSequence: [3, 1, 4, 1, 5],
   ),
@@ -603,7 +614,8 @@ final List<PuzzleLevel> levels51To75 = [
     category: PuzzleCategory.trickPhysics,
     interactionType: InteractionType.dragDrop,
     questionEn: 'Help the cute puppy reach its bone on the high ledge!',
-    questionHi: 'छोटे पिल्ले को ऊंची शेल्फ पर रखी हड्डी तक पहुँचने में मदद करें!',
+    questionHi:
+        'छोटे पिल्ले को ऊंची शेल्फ पर रखी हड्डी तक पहुँचने में मदद करें!',
     instructionEn: 'Drag wooden steps box under the puppy.',
     instructionHi: 'लकड़ी की सीढ़ी वाले बक्से को पिल्ले के नीचे खींचकर लाएं।',
     explanationEn: 'The puppy climbed up the step stool and grabbed the bone!',
@@ -611,12 +623,12 @@ final List<PuzzleLevel> levels51To75 = [
     hintsEn: [
       'Puppy needs elevation.',
       'Wooden step box provides height.',
-      'Drag Wooden Steps -> Below Ledge.'
+      'Drag Wooden Steps -> Below Ledge.',
     ],
     hintsHi: [
       'पिल्ले को ऊंचाई चाहिए।',
       'लकड़ी का बक्सा ऊंचाई देगा।',
-      'बक्से को शेल्फ के नीचे रखें।'
+      'बक्से को शेल्फ के नीचे रखें।',
     ],
     dragSourceId: 'wooden_step_box',
     dragTargetId: 'high_ledge_base',

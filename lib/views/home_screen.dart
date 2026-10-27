@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,6 +7,7 @@ import '../core/localization/app_localizations.dart';
 import '../core/theme/app_theme.dart';
 import '../repositories/level_repository.dart';
 import '../viewmodels/user_progress_viewmodel.dart';
+import '../widgets/banner_ad_view.dart';
 import 'game_screen.dart';
 import 'level_map_screen.dart';
 import 'secondary_screens.dart';
@@ -35,8 +38,11 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.psychology_alt_rounded,
-                                color: AppTheme.secondaryColor, size: 32),
+                            const Icon(
+                              Icons.psychology_alt_rounded,
+                              color: AppTheme.secondaryColor,
+                              size: 32,
+                            ),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
@@ -56,34 +62,38 @@ class HomeScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: AppTheme.cardBgColor,
                             border: Border.all(
-                                color: AppTheme.secondaryColor.withValues(alpha: .5),
-                                width: 2),
+                              color: AppTheme.secondaryColor.withValues(
+                                alpha: .5,
+                              ),
+                              width: 2,
+                            ),
                             boxShadow: [
                               BoxShadow(
-                                color: AppTheme.primaryColor.withValues(alpha: .3),
+                                color: AppTheme.primaryColor.withValues(
+                                  alpha: .3,
+                                ),
                                 blurRadius: 40,
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.lightbulb_rounded,
-                              color: AppTheme.warningColor, size: 76),
+                          child: const Icon(
+                            Icons.lightbulb_rounded,
+                            color: AppTheme.warningColor,
+                            size: 76,
+                          ),
                         ),
                         const SizedBox(height: 24),
                         Text(
                           text.translate('app_title'),
                           textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
+                          style: Theme.of(context).textTheme.headlineMedium
                               ?.copyWith(fontWeight: FontWeight.w900),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           text.translate('sub_title'),
                           textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
+                          style: Theme.of(context).textTheme.bodyLarge
                               ?.copyWith(color: Colors.white70),
                         ),
                         const SizedBox(height: 28),
@@ -92,7 +102,10 @@ class HomeScreen extends StatelessWidget {
                           height: 58,
                           child: ElevatedButton.icon(
                             key: const Key('play_button'),
-                            icon: const Icon(Icons.play_arrow_rounded, size: 28),
+                            icon: const Icon(
+                              Icons.play_arrow_rounded,
+                              size: 28,
+                            ),
                             label: Text('${text.translate('play')}  ·  $level'),
                             onPressed: () => _openLevel(context, level),
                           ),
@@ -123,17 +136,33 @@ class HomeScreen extends StatelessWidget {
                             _HomeTile(
                               icon: Icons.today_rounded,
                               label: text.translate('daily_challenge'),
-                              onTap: () => _push(context, const DailyChallengeScreen()),
+                              onTap: () =>
+                                  _push(context, const DailyChallengeScreen()),
                             ),
                             _HomeTile(
                               icon: Icons.insights_rounded,
                               label: text.translate('stats'),
-                              onTap: () => _push(context, const StatisticsScreen()),
+                              onTap: () =>
+                                  _push(context, const StatisticsScreen()),
+                            ),
+                            _HomeTile(
+                              icon: Icons.emoji_events_rounded,
+                              label: text.translate('achievements'),
+                              onTap: () =>
+                                  _push(context, const AchievementsScreen()),
+                            ),
+                            _HomeTile(
+                              icon: Icons.shuffle_rounded,
+                              label: text.translate('random_practice'),
+                              key: const Key('random_practice_button'),
+                              onTap: () =>
+                                  _openRandomLevel(context, levels, progress),
                             ),
                             _HomeTile(
                               icon: Icons.settings_rounded,
                               label: text.translate('settings'),
-                              onTap: () => _push(context, const SettingsScreen()),
+                              onTap: () =>
+                                  _push(context, const SettingsScreen()),
                             ),
                             _HomeTile(
                               icon: Icons.storefront_rounded,
@@ -157,6 +186,7 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
+                        const BannerAdView(),
                       ],
                     ),
                   ),
@@ -170,14 +200,26 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _openLevel(BuildContext context, int id) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => GameScreen(levelId: id)),
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => GameScreen(levelId: id)));
+  }
+
+  void _openRandomLevel(
+    BuildContext context,
+    LevelRepository levels,
+    UserProgressViewModel progress,
+  ) {
+    final playable = levels.allLevels.where(
+      (level) => progress.isLevelUnlocked(level.id),
     );
+    final pool = playable.toList();
+    if (pool.isEmpty) return;
+    final pick = pool[Random().nextInt(pool.length)];
+    _openLevel(context, pick.id);
   }
 
   void _push(BuildContext context, Widget screen) {
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (_) => screen));
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
   }
 }
 
@@ -188,20 +230,24 @@ class _CoinPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          color: AppTheme.cardBgColor,
-          borderRadius: BorderRadius.circular(24),
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    decoration: BoxDecoration(
+      color: AppTheme.cardBgColor,
+      borderRadius: BorderRadius.circular(24),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Icon(
+          Icons.monetization_on,
+          color: AppTheme.warningColor,
+          size: 18,
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.monetization_on, color: AppTheme.warningColor, size: 18),
-            const SizedBox(width: 5),
-            Text('$coins', style: const TextStyle(fontWeight: FontWeight.bold)),
-          ],
-        ),
-      );
+        const SizedBox(width: 5),
+        Text('$coins', style: const TextStyle(fontWeight: FontWeight.bold)),
+      ],
+    ),
+  );
 }
 
 class _HomeTile extends StatelessWidget {
@@ -210,6 +256,7 @@ class _HomeTile extends StatelessWidget {
   final VoidCallback onTap;
 
   const _HomeTile({
+    super.key,
     required this.icon,
     required this.label,
     required this.onTap,
@@ -217,28 +264,28 @@ class _HomeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: AppTheme.cardBgColor.withValues(alpha: .85),
-        borderRadius: BorderRadius.circular(16),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: AppTheme.secondaryColor, size: 22),
-                const SizedBox(height: 5),
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
-                ),
-              ],
+    color: AppTheme.cardBgColor.withValues(alpha: .85),
+    borderRadius: BorderRadius.circular(16),
+    child: InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: AppTheme.secondaryColor, size: 22),
+            const SizedBox(height: 5),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
             ),
-          ),
+          ],
         ),
-      );
+      ),
+    ),
+  );
 }

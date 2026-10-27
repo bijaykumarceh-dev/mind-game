@@ -64,4 +64,19 @@ class PuzzleLevel {
 
   List<String>? getOptions(String languageCode) =>
       languageCode == 'hi' ? (optionsHi ?? options) : options;
+
+  /// Localized description of a single multi-step stage (1-based), or null
+  /// when the level does not provide step texts.
+  String? getStepText(String languageCode, int stepNumber) {
+    final data = extraData;
+    if (data == null) return null;
+    final Object? raw = languageCode == 'hi'
+        ? data['stepTextsHi']
+        : data['stepTextsEn'];
+    if (raw is! List) return null;
+    final index = stepNumber - 1;
+    if (index < 0 || index >= raw.length) return null;
+    final value = raw[index]?.toString().trim();
+    return (value == null || value.isEmpty) ? null : value;
+  }
 }

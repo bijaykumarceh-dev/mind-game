@@ -93,16 +93,33 @@ class LevelRepository {
           final target = level.positionTarget;
           if (target == null || target['x'] is! num || target['y'] is! num) {
             errors.add('$prefix has an invalid position target.');
+          } else {
+            final tx = (target['x'] as num).toDouble();
+            final ty = (target['y'] as num).toDouble();
+            if (tx < 0 || tx > 1 || ty < 0 || ty > 1) {
+              errors.add(
+                '$prefix position target must be normalized to 0..1, '
+                'found ($tx, $ty).',
+              );
+            }
           }
           break;
         case InteractionType.multiStep:
           final steps = (level.extraData?['totalSteps'] as num?)?.toInt() ?? 3;
           if (steps < 1) errors.add('$prefix has an invalid step count.');
+          for (final key in ['stepTextsEn', 'stepTextsHi']) {
+            final texts = level.extraData?[key];
+            if (texts != null && (texts is! List || texts.length != steps)) {
+              errors.add(
+                '$prefix "$key" must contain exactly $steps step texts.',
+              );
+            }
+          }
           break;
         case InteractionType.patternObservation:
           final answer = level.extraData?['answer'];
-          final hasChoice = level.options?.isNotEmpty == true &&
-              level.solutionIndex != null;
+          final hasChoice =
+              level.options?.isNotEmpty == true && level.solutionIndex != null;
           if (!hasChoice && (answer == null || answer.toString().isEmpty)) {
             errors.add('$prefix has no pattern answer.');
           }

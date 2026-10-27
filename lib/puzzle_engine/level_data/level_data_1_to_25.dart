@@ -17,12 +17,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Look at size perspective.',
       'Check the front elephant.',
-      'Tap Elephant #3 on the right.'
+      'Tap Elephant #3 on the right.',
     ],
     hintsHi: [
       'आकार और नजरिए पर ध्यान दें।',
       'सामने वाले हाथी को देखें।',
-      'दाईं ओर हाथी #3 पर टैप करें।'
+      'दाईं ओर हाथी #3 पर टैप करें।',
     ],
     options: ['Elephant A', 'Elephant B', 'Giant Elephant C', 'Baby Elephant'],
     optionsHi: ['हाथी अ', 'हाथी ब', 'विशाल हाथी स', 'छोटा हाथी'],
@@ -43,12 +43,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Check near the main trunk split.',
       'Look for two big round eyes.',
-      'Tap the middle left branch.'
+      'Tap the middle left branch.',
     ],
     hintsHi: [
       'मुख्य टहनी के जोड़ के पास देखें।',
       'दो बड़ी गोल आंखों को खोजें।',
-      'बाईं ओर की बीच वाली शाखा पर टैप करें।'
+      'बाईं ओर की बीच वाली शाखा पर टैप करें।',
     ],
     solutionIndex: 1,
     extraData: {'itemsCount': 4},
@@ -63,17 +63,19 @@ final List<PuzzleLevel> levels1To25 = [
     questionHi: 'आग फैलने से पहले कैंपफ़ायर बुझाएं!',
     instructionEn: 'Drag the cloud over the campfire to rain on it.',
     instructionHi: 'आग पर बारिश करने के लिए बादल को खींचकर लाएं।',
-    explanationEn: 'Dragging the rain cloud directly over the fire extinguishes it!',
-    explanationHi: 'बारिश के बादल को आग पर लाने से पानी गिरता है और आग बुझ जाती है!',
+    explanationEn:
+        'Dragging the rain cloud directly over the fire extinguishes it!',
+    explanationHi:
+        'बारिश के बादल को आग पर लाने से पानी गिरता है और आग बुझ जाती है!',
     hintsEn: [
       'Look at the sky objects.',
       'Water extinguishes fire.',
-      'Drag Cloud -> Campfire.'
+      'Drag Cloud -> Campfire.',
     ],
     hintsHi: [
       'आसमान की चीजों को देखें।',
       'पानी से आग बुझती है।',
-      'बादल को खींचकर आग पर रखें।'
+      'बादल को खींचकर आग पर रखें।',
     ],
     dragSourceId: 'cloud_rain',
     dragTargetId: 'campfire_fire',
@@ -89,16 +91,17 @@ final List<PuzzleLevel> levels1To25 = [
     instructionEn: 'Count carefully. Do not forget the trick!',
     instructionHi: 'ध्यान से गिनें। चाल में न फंसें!',
     explanationEn: 'The fallen apples are on the ground, leaving 5 apples still on the branches!',
-    explanationHi: 'गिरे हुए सेब ज़मीन पर हैं, इसलिए पेड़ की टहनियों पर 5 सेब बचे हैं!',
+    explanationHi:
+        'गिरे हुए सेब ज़मीन पर हैं, इसलिए पेड़ की टहनियों पर 5 सेब बचे हैं!',
     hintsEn: [
       'Look at the remaining apples on the branches.',
       'Don\'t subtract blindly.',
-      'Tap 5.'
+      'Tap 5.',
     ],
     hintsHi: [
       'टहनियों पर बचे हुए सेबों को गिनें।',
       'बिना सोचे न घटाएं।',
-      '5 चुनें।'
+      '5 चुनें।',
     ],
     options: ['3', '5', '8', '0'],
     optionsHi: ['३', '५', '८', '०'],
@@ -110,7 +113,8 @@ final List<PuzzleLevel> levels1To25 = [
     id: 5,
     category: PuzzleCategory.patternRecognition,
     interactionType: InteractionType.tap,
-    questionEn: 'Tap the shapes in order of sides: Triangle -> Square -> Pentagon',
+    questionEn:
+        'Tap the shapes in order of sides: Triangle -> Square -> Pentagon',
     questionHi: 'भुजाओं के क्रम में टैप करें: त्रिभुज -> वर्ग -> पंचभुज',
     instructionEn: 'Tap 3 sides, then 4 sides, then 5 sides.',
     instructionHi: 'पहले 3 भुजाएं, फिर 4, फिर 5 भुजाओं वाली आकृति पर टैप करें।',
@@ -119,13 +123,9 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Count geometric corners.',
       'Triangle is first.',
-      'Sequence: [0, 1, 2]'
+      'Sequence: [0, 1, 2]',
     ],
-    hintsHi: [
-      'कोनों को गिनें।',
-      'त्रिभुज पहला है।',
-      'क्रम: [0, 1, 2]'
-    ],
+    hintsHi: ['कोनों को गिनें।', 'त्रिभुज पहला है।', 'क्रम: [0, 1, 2]'],
     targetSequence: [0, 1, 2],
   ),
 
@@ -134,7 +134,8 @@ final List<PuzzleLevel> levels1To25 = [
     id: 6,
     category: PuzzleCategory.logic,
     interactionType: InteractionType.multipleChoice,
-    questionEn: 'If a electric train runs North, which way does the smoke blow?',
+    questionEn:
+        'If a electric train runs North, which way does the smoke blow?',
     questionHi: 'यदि एक इलेक्ट्रिक ट्रेन उत्तर की ओर चलती है, तो धुआं किस दिशा में जाएगा?',
     instructionEn: 'Think carefully about electric trains!',
     instructionHi: 'इलेक्ट्रिक ट्रेन के बारे में ध्यान से सोचें!',
@@ -143,12 +144,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'What powers the train?',
       'Does electricity emit smoke?',
-      'Select "No Smoke".'
+      'Select "No Smoke".',
     ],
     hintsHi: [
       'ट्रेन किससे चलती है?',
       'क्या बिजली से धुआं निकलता है?',
-      '"कोई धुआं नहीं" चुनें।'
+      '"कोई धुआं नहीं" चुनें।',
     ],
     options: ['North', 'South', 'West', 'No Smoke!'],
     optionsHi: ['उत्तर', 'दक्षिण', 'पश्चिम', 'कोई धुआं नहीं!'],
@@ -169,14 +170,14 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Move the car directly.',
       'Align with yellow dashed border.',
-      'Center position is (150, 200).'
+      'Aim for the middle of the outlined circle.',
     ],
     hintsHi: [
       'कार को सीधे खिसकाएं।',
       'पीली सीमा रेखा में मिलाएं।',
-      'केंद्र स्थिति (150, 200) है।'
+      'निशाने के ठीक बीच में लक्ष्य करें।',
     ],
-    positionTarget: {'x': 150.0, 'y': 200.0, 'tolerance': 40.0},
+    positionTarget: {'x': 0.52, 'y': 0.57, 'tolerance': 0.14},
   ),
 
   // Level 8
@@ -190,15 +191,11 @@ final List<PuzzleLevel> levels1To25 = [
     instructionHi: 'दोगुनी होने वाली श्रृंखला में अगली संख्या टाइप करें।',
     explanationEn: 'Each number doubles! 16 x 2 = 32.',
     explanationHi: 'हर संख्या दोगुनी हो रही है! 16 x 2 = 32.',
-    hintsEn: [
-      'Multiply by 2 each time.',
-      '16 times 2.',
-      'Answer is 32.'
-    ],
+    hintsEn: ['Multiply by 2 each time.', '16 times 2.', 'Answer is 32.'],
     hintsHi: [
       'हर बार 2 से गुणा करें।',
       '16 को 2 से गुणा करें।',
-      'उत्तर 32 है।'
+      'उत्तर 32 है।',
     ],
     extraData: {'answer': '32'},
   ),
@@ -217,12 +214,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Monkeys love peeled bananas.',
       'Drag peel off banana.',
-      'Drag Banana -> Monkey.'
+      'Drag Banana -> Monkey.',
     ],
     hintsHi: [
       'बंदर छिला हुआ केला पसंद करते हैं।',
       'केला छीलें।',
-      'केले को बंदर पर खींचें।'
+      'केले को बंदर पर खींचें।',
     ],
     dragSourceId: 'peeled_banana',
     dragTargetId: 'hungry_monkey',
@@ -242,14 +239,26 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Follow tea brewing steps.',
       'Boil before pouring.',
-      'Complete 3 steps sequentially.'
+      'Complete 3 steps sequentially.',
     ],
     hintsHi: [
       'चाय बनाने के चरणों का पालन करें।',
       'डालने से पहले उबालें।',
-      '3 चरण पूरे करें।'
+      '3 चरण पूरे करें।',
     ],
-    extraData: {'totalSteps': 3},
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Pour water into the kettle',
+        'Boil the water',
+        'Pour the tea into the cup',
+      ],
+      'stepTextsHi': [
+        'केतली में पानी डालें',
+        'पानी को उबालें',
+        'चाय को कप में डालें',
+      ],
+    },
   ),
 
   // Level 11
@@ -266,12 +275,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Look for solid blocked pipe caps.',
       'Pipe to Bucket A is closed.',
-      'Bucket B has open path.'
+      'Bucket B has open path.',
     ],
     hintsHi: [
       'बंद पाइप कैप्स को देखें।',
       'बाल्टी अ का रास्ता बंद है।',
-      'बाल्टी ब का रास्ता खुला है।'
+      'बाल्टी ब का रास्ता खुला है।',
     ],
     options: ['Bucket A', 'Bucket B', 'Bucket C', 'All at once'],
     optionsHi: ['बाल्टी अ', 'बाल्टी ब', 'बाल्टी स', 'सब एक साथ'],
@@ -292,13 +301,9 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Green is index 0.',
       'Red is index 1.',
-      'Sequence is Green (0) -> Red (1) -> Blue (2).'
+      'Sequence is Green (0) -> Red (1) -> Blue (2).',
     ],
-    hintsHi: [
-      'हरा 0 पर है।',
-      'लाल 1 पर है।',
-      'क्रम: हरा -> लाल -> नीला।'
-    ],
+    hintsHi: ['हरा 0 पर है।', 'लाल 1 पर है।', 'क्रम: हरा -> लाल -> नीला।'],
     targetSequence: [0, 1, 2],
   ),
 
@@ -316,12 +321,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Look at the central stars.',
       'Coin on bottom right is flipped.',
-      'Tap Coin 4.'
+      'Tap Coin 4.',
     ],
     hintsHi: [
       'बीच वाले तारों को देखें।',
       'नीचे दाईं ओर का सिक्का उल्टा है।',
-      'सिक्का 4 पर टैप करें।'
+      'सिक्का 4 पर टैप करें।',
     ],
     solutionIndex: 3,
     extraData: {'itemsCount': 4},
@@ -334,19 +339,21 @@ final List<PuzzleLevel> levels1To25 = [
     interactionType: InteractionType.dragDrop,
     questionEn: 'Balance the seesaw perfectly!',
     questionHi: 'सी-सॉ (झूले) को पूरी तरह संतुलित करें!',
-    instructionEn: 'Drag the small weight to the left end and heavy weight near center.',
+    instructionEn:
+        'Drag the small weight to the left end and heavy weight near center.',
     instructionHi: 'छोटे वजन को दूर और भारी वजन को केंद्र के पास रखें।',
-    explanationEn: 'Torque physics balanced! Mass x Distance equalized both sides.',
+    explanationEn:
+        'Torque physics balanced! Mass x Distance equalized both sides.',
     explanationHi: 'भौतिकी का संतुलन! दोनों तरफ का टॉर्क बराबर हो गया।',
     hintsEn: [
       'Physics torque rule applies.',
       'Heavy item closer to pivot.',
-      'Drag Heavy Weight -> Center Slot.'
+      'Drag Heavy Weight -> Center Slot.',
     ],
     hintsHi: [
       'टॉर्क का नियम लागू होता है।',
       'भारी वस्तु केंद्र के पास रखी जाएगी।',
-      'भारी वजन को केंद्र में रखें।'
+      'भारी वजन को केंद्र में रखें।',
     ],
     dragSourceId: 'heavy_weight',
     dragTargetId: 'seesaw_center',
@@ -366,12 +373,12 @@ final List<PuzzleLevel> levels1To25 = [
     hintsEn: [
       'Calculate time per mouse per cat.',
       '1 cat catches 1 mouse in 3 minutes.',
-      'Answer is 3 cats!'
+      'Answer is 3 cats!',
     ],
     hintsHi: [
       'प्रति बिल्ली समय की गणना करें।',
       '1 बिल्ली 3 मिनट में 1 चूहा पकड़ती है।',
-      'उत्तर 3 बिल्लियां हैं!'
+      'उत्तर 3 बिल्लियां हैं!',
     ],
     options: ['100 Cats', '33 Cats', '3 Cats', '1 Cat'],
     optionsHi: ['१०० बिल्लियां', '३३ बिल्लियां', '३ बिल्लियां', '१ बिल्ली'],
@@ -388,16 +395,17 @@ final List<PuzzleLevel> levels1To25 = [
     instructionEn: 'Tap the main circuit breaker, not individual light bulbs!',
     instructionHi: 'अलग-अलग बल्बों के बजाय मेन स्विच पर टैप करें!',
     explanationEn: 'Flipping the main switch turns off all lights instantly!',
-    explanationHi: 'मेन स्विच बंद करते ही कमरे की सारी बत्तियां एक साथ बंद हो गईं!',
+    explanationHi:
+        'मेन स्विच बंद करते ही कमरे की सारी बत्तियां एक साथ बंद हो गईं!',
     hintsEn: [
       'Individual bulbs take too long.',
       'Look for the master switch.',
-      'Tap "Main Switch".'
+      'Tap "Main Switch".',
     ],
     hintsHi: [
       'एक-एक करके बंद करने में समय लगेगा।',
       'मुख्य (मेन) स्विच खोजें।',
-      '"मेन स्विच" पर टैप करें।'
+      '"मेन स्विच" पर टैप करें।',
     ],
     options: ['Bulb 1', 'Bulb 2', 'Bulb 3', 'Main Switch'],
     optionsHi: ['बल्ब १', 'बल्ब २', 'बल्ब ३', 'मेन स्विच'],
@@ -411,19 +419,22 @@ final List<PuzzleLevel> levels1To25 = [
     interactionType: InteractionType.patternObservation,
     questionEn: 'How many triangles are in this star shape?',
     questionHi: 'इस तारे की आकृति में कुल कितने त्रिभुज हैं?',
-    instructionEn: 'Count small outer triangles + large inner overlapping triangles.',
-    instructionHi: 'छोटे बाहरी त्रिभुजों और बड़े आंतरिक त्रिभुजों को मिलाकर गिनें।',
+    instructionEn:
+        'Count small outer triangles + large inner overlapping triangles.',
+    instructionHi:
+        'छोटे बाहरी त्रिभुजों और बड़े आंतरिक त्रिभुजों को मिलाकर गिनें।',
     explanationEn: '5 small outer points + 1 large central pentagram triangle structures = 8 triangles!',
-    explanationHi: '5 छोटे बाहरी कोने + 3 बड़े आंतरिक मिलाकर कुल 8 त्रिभुज हैं!',
+    explanationHi:
+        '5 छोटे बाहरी कोने + 3 बड़े आंतरिक मिलाकर कुल 8 त्रिभुज हैं!',
     hintsEn: [
       'Don\'t miss the overlapping big ones.',
       'Count 5 outer + 3 inner.',
-      'Answer is 8.'
+      'Answer is 8.',
     ],
     hintsHi: [
       'बड़े वाले त्रिभुजों को न भूलें।',
       '5 बाहरी + 3 आंतरिक।',
-      'उत्तर 8 है।'
+      'उत्तर 8 है।',
     ],
     extraData: {'answer': '8'},
   ),
@@ -435,21 +446,21 @@ final List<PuzzleLevel> levels1To25 = [
     interactionType: InteractionType.positioning,
     questionEn: 'Fit the triangular piece into the puzzle grid!',
     questionHi: 'त्रिभुज के टुकड़े को पहेली की ग्रिड में सही बैठाएं!',
-    instructionEn: 'Drag the triangle to position (200, 150).',
-    instructionHi: 'त्रिभुज को खींचकर स्थिति (200, 150) पर लाएं।',
+    instructionEn: 'Drag the triangle onto the marked circle.',
+    instructionHi: 'त्रिभुज को खींचकर चिह्नित गोल निशान पर लाएं।',
     explanationEn: 'The piece clicked right into place!',
     explanationHi: 'टुकड़ा पहेली में एकदम सही फिट हो गया!',
     hintsEn: [
       'Align points with hollow slot.',
       'Move right and slightly up.',
-      'Position is near (200, 150).'
+      'Drop it onto the outlined circle.',
     ],
     hintsHi: [
       'कोनों को खाली जगह से मिलाएं।',
       'दिए गए स्थान की ओर खिसकाएं।',
-      'स्थिति (200, 150) के पास है।'
+      'घेरे हुए गोल निशान पर छोड़ दें।',
     ],
-    positionTarget: {'x': 200.0, 'y': 150.0, 'tolerance': 35.0},
+    positionTarget: {'x': 0.69, 'y': 0.43, 'tolerance': 0.12},
   ),
 
   // Level 19
@@ -460,18 +471,19 @@ final List<PuzzleLevel> levels1To25 = [
     questionEn: 'Wake up the sleeping panda!',
     questionHi: 'सोए हुए पांडा को जगाएं!',
     instructionEn: 'Drag the bamboo shoot near its nose to let it smell food.',
-    instructionHi: 'बांस की टहनी को खींचकर उसकी नाक के पास लाएं ताकि वह खुशबू सूंघ सके।',
+    instructionHi:
+        'बांस की टहनी को खींचकर उसकी नाक के पास लाएं ताकि वह खुशबू सूंघ सके।',
     explanationEn: 'The delicious bamboo smell woke the panda right up!',
     explanationHi: 'बांस की खुशबू सूंघते ही पांडा तुरंत जाग गया!',
     hintsEn: [
       'Pandas love bamboo.',
       'Place food near nostrils.',
-      'Drag Bamboo -> Panda Nose.'
+      'Drag Bamboo -> Panda Nose.',
     ],
     hintsHi: [
       'पांडा को बांस पसंद है।',
       'भोजन को नाक के पास रखें।',
-      'बांस को पांडा की नाक पर खींचें।'
+      'बांस को पांडा की नाक पर खींचें।',
     ],
     dragSourceId: 'bamboo_shoot',
     dragTargetId: 'panda_nose',
@@ -484,21 +496,36 @@ final List<PuzzleLevel> levels1To25 = [
     interactionType: InteractionType.multiStep,
     questionEn: 'Unlock the secret safe box!',
     questionHi: 'गुप्त तिजोरी का ताला खोलें!',
-    instructionEn: 'Step 1: Insert key. Step 2: Turn key right. Step 3: Open latch.',
-    instructionHi: 'चरण 1: चाबी लगाएं। चरण 2: चाबी दाएं घुमाएं। चरण 3: हैंडल खोलें।',
+    instructionEn:
+        'Step 1: Insert key. Step 2: Turn key right. Step 3: Open latch.',
+    instructionHi:
+        'चरण 1: चाबी लगाएं। चरण 2: चाबी दाएं घुमाएं। चरण 3: हैंडल खोलें।',
     explanationEn: 'Click! The vault door swings open revealing gold coins!',
-    explanationHi: 'खटक्! तिजोरी का दरवाजा खुल गया और सोने के सिक्के दिखने लगे!',
+    explanationHi:
+        'खटक्! तिजोरी का दरवाजा खुल गया और सोने के सिक्के दिखने लगे!',
     hintsEn: [
       'Key goes in keyhole first.',
       'Rotate clockwise.',
-      '3 steps sequence.'
+      '3 steps sequence.',
     ],
     hintsHi: [
       'पहले चाबी लगाएं।',
       'घड़ी की दिशा में घुमाएं।',
-      '3 चरणों का पालन करें।'
+      '3 चरणों का पालन करें।',
     ],
-    extraData: {'totalSteps': 3},
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Insert the key into the lock',
+        'Turn the key to the right',
+        'Open the latch',
+      ],
+      'stepTextsHi': [
+        'ताले में चाबी लगाएं',
+        'चाबी को दाएं घुमाएं',
+        'हैंडल खोलें',
+      ],
+    },
   ),
 
   // Level 21
@@ -510,29 +537,31 @@ final List<PuzzleLevel> levels1To25 = [
     questionHi: 'कौन सा कथन हमेशा सत्य (TRUE) होता है?',
     instructionEn: 'Read carefully and evaluate logical necessity.',
     instructionHi: 'ध्यान से पढ़ें और तार्किक सत्य को समझें।',
-    explanationEn: 'Tomorrow has not happened yet, so tomorrow is always in the future!',
-    explanationHi: 'कल अभी तक नहीं आया है, इसलिए "कल" हमेशा भविष्य में ही होता है!',
+    explanationEn:
+        'Tomorrow has not happened yet, so tomorrow is always in the future!',
+    explanationHi:
+        'कल अभी तक नहीं आया है, इसलिए "कल" हमेशा भविष्य में ही होता है!',
     hintsEn: [
       'Think about time.',
       'Yesterday is past, Tomorrow is future.',
-      'Choose "Tomorrow comes after today".'
+      'Choose "Tomorrow comes after today".',
     ],
     hintsHi: [
       'समय के बारे में सोचें।',
       'बीता कल अतीत है, आने वाला कल भविष्य।',
-      '"कल हमेशा आज के बाद आता है" चुनें।'
+      '"कल हमेशा आज के बाद आता है" चुनें।',
     ],
     options: [
       'Cats fly in space',
       'Tomorrow comes after today',
       'Sun rises in West',
-      'Water boils at 0°C'
+      'Water boils at 0°C',
     ],
     optionsHi: [
       'बिल्लियां उड़ती हैं',
       'कल हमेशा आज के बाद आता है',
       'सूर्य पश्चिम में उगता है',
-      'पानी 0°C पर उबलता है'
+      'पानी 0°C पर उबलता है',
     ],
     solutionIndex: 1,
   ),
@@ -546,17 +575,18 @@ final List<PuzzleLevel> levels1To25 = [
     questionHi: 'स्क्रीन पर सबसे तेज़ जानवर पर टैप करें!',
     instructionEn: 'Cheetah, Turtle, Snail, Sloth.',
     instructionHi: 'चीता, कछुआ, घोंघा, सुस्त।',
-    explanationEn: 'Cheetah is the land speed champion reaching up to 120 km/h!',
+    explanationEn:
+        'Cheetah is the land speed champion reaching up to 120 km/h!',
     explanationHi: 'चीता ज़मीन पर सबसे तेज़ भागने वाला जीव है!',
     hintsEn: [
       'Which animal sprints like lightning?',
       'Spotted feline predator.',
-      'Tap Cheetah (Index 0).'
+      'Tap Cheetah (Index 0).',
     ],
     hintsHi: [
       'कौन सा जानवर बिजली की तरह भागता है?',
       'चित्तीदार शिकारी।',
-      'चीता (इंडेक्स 0) पर टैप करें।'
+      'चीता (इंडेक्स 0) पर टैप करें।',
     ],
     solutionIndex: 0,
   ),
@@ -572,16 +602,8 @@ final List<PuzzleLevel> levels1To25 = [
     instructionHi: 'सब्स छोटी से सबसे बड़ी संख्या पर टैप करें।',
     explanationEn: '1, 5, 9, 12 is in perfect ascending order!',
     explanationHi: '1, 5, 9, 12 एकदम सही बढ़ते क्रम में है!',
-    hintsEn: [
-      'Start with 1.',
-      'Then 5.',
-      'Sequence: [0, 1, 2, 3]'
-    ],
-    hintsHi: [
-      '1 से शुरू करें।',
-      'फिर 5।',
-      'क्रम: [0, 1, 2, 3]'
-    ],
+    hintsEn: ['Start with 1.', 'Then 5.', 'Sequence: [0, 1, 2, 3]'],
+    hintsHi: ['1 से शुरू करें।', 'फिर 5।', 'क्रम: [0, 1, 2, 3]'],
     targetSequence: [0, 1, 2, 3],
   ),
 
@@ -596,16 +618,8 @@ final List<PuzzleLevel> levels1To25 = [
     instructionHi: 'पहले समीकरण को ध्यान से देखें!',
     explanationEn: 'If 1 = 5, then logically 5 = 1!',
     explanationHi: 'अगर 1 = 5 है, तो तार्किक रूप से 5 = 1 होगा!',
-    hintsEn: [
-      'Don\'t compute 5^5.',
-      'Read statement 1 again.',
-      'Answer is 1.'
-    ],
-    hintsHi: [
-      '5^5 की गणना न करें।',
-      'पहला वाक्य फिर से पढ़ें।',
-      'उत्तर 1 है।'
-    ],
+    hintsEn: ['Don\'t compute 5^5.', 'Read statement 1 again.', 'Answer is 1.'],
+    hintsHi: ['5^5 की गणना न करें।', 'पहला वाक्य फिर से पढ़ें।', 'उत्तर 1 है।'],
     extraData: {'answer': '1'},
   ),
 
@@ -618,17 +632,19 @@ final List<PuzzleLevel> levels1To25 = [
     questionHi: 'टूटे हुए पुल को पार करने में कार की मदद करें!',
     instructionEn: 'Drag the wooden plank over the chasm gap.',
     instructionHi: 'लकड़ी के तख्ते को खींचकर पुल की दरार पर रखें।',
-    explanationEn: 'The wooden plank covered the gap so the car could zoom across safely!',
-    explanationHi: 'लकड़ी का तख्ता रखते ही रास्ता बन गया और कार सुरक्षित निकल गई!',
+    explanationEn:
+        'The wooden plank covered the gap so the car could zoom across safely!',
+    explanationHi:
+        'लकड़ी का तख्ता रखते ही रास्ता बन गया और कार सुरक्षित निकल गई!',
     hintsEn: [
       'Bridge has a missing section.',
       'Wood plank bridges gap.',
-      'Drag Wooden Plank -> Bridge Gap.'
+      'Drag Wooden Plank -> Bridge Gap.',
     ],
     hintsHi: [
       'पुल का एक हिस्सा गायब है।',
       'लकड़ी का तख्ता दरार भरेगा।',
-      'तख्ते को पुल की दरार पर रखें।'
+      'तख्ते को पुल की दरार पर रखें।',
     ],
     dragSourceId: 'wooden_plank',
     dragTargetId: 'bridge_gap',

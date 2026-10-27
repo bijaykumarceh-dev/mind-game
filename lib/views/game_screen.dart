@@ -12,8 +12,10 @@ import '../models/puzzle_category.dart';
 import '../models/puzzle_level.dart';
 import '../repositories/level_repository.dart';
 import '../services/ad_service.dart';
+import '../services/audio_service.dart';
 import '../viewmodels/game_viewmodel.dart';
 import '../viewmodels/user_progress_viewmodel.dart';
+import '../widgets/confetti.dart';
 
 class GameScreen extends StatelessWidget {
   final int levelId;
@@ -28,6 +30,7 @@ class GameScreen extends StatelessWidget {
         level: level,
         userProgressVM: context.read<UserProgressViewModel>(),
         adService: context.read<AdService>(),
+        audio: context.read<AudioService>(),
       ),
       child: _GameView(level: level),
     );
@@ -63,7 +66,9 @@ class _GameView extends StatelessWidget {
             key: const Key('hint_button'),
             tooltip: text.translate('hint'),
             icon: const Icon(Icons.lightbulb_outline_rounded),
-            onPressed: () => _showHint(context, game, progress),
+            onPressed: game.hintsRevealedCount >= game.maxHints
+                ? null
+                : () => _showHint(context, game, progress),
           ),
         ],
       ),
@@ -84,21 +89,58 @@ class _GameView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                           backgroundColor: AppTheme.surfaceColor,
                         ),
-                        const SizedBox(height: 22),
-                        Text(
-                          isHindi ? level.category.nameHi : level.category.nameEn,
-                          style: const TextStyle(
-                            color: AppTheme.secondaryColor,
-                            fontWeight: FontWeight.w700,
+                        if (game.hasTimer)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.timer_rounded,
+                                  size: 20,
+                                  color: game.secondsLeft <= 3
+                                      ? AppTheme.accentColor
+                                      : AppTheme.secondaryColor,
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  '${text.translate('time_left')}: ${game.secondsLeft}s',
+                                  key: const Key('timer_label'),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: game.secondsLeft <= 3
+                                        ? AppTheme.accentColor
+                                        : Colors.white70,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                        const SizedBox(height: 22),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              level.category.icon,
+                              size: 16,
+                              color: AppTheme.secondaryColor,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              isHindi
+                                  ? level.category.nameHi
+                                  : level.category.nameEn,
+                              style: const TextStyle(
+                                color: AppTheme.secondaryColor,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 10),
                         Text(
                           level.getQuestion(progress.languageCode),
                           key: const Key('puzzle_question'),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
+                          style: Theme.of(context).textTheme.headlineSmall
                               ?.copyWith(fontWeight: FontWeight.w800),
                         ),
                         const SizedBox(height: 8),
@@ -128,7 +170,7 @@ class _GameView extends StatelessWidget {
     UserProgressViewModel progress,
   ) async {
     final text = AppLocalizations.of(context);
-    if (game.hintsRevealedCount >= level.getHints(progress.languageCode).length) {
+    if (game.hintsRevealedCount >= game.maxHints) {
       return;
     }
     if (progress.hintsInventory == 0) {
@@ -141,7 +183,13 @@ class _GameView extends StatelessWidget {
           game.revealNextHint();
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(level.getHints(progress.languageCode)[game.hintsRevealedCount - 1])),
+              SnackBar(
+                content: Text(
+                  level.getHints(
+                    progress.languageCode,
+                  )[game.hintsRevealedCount - 1],
+                ),
+              ),
             );
           }
         },
@@ -166,7 +214,9 @@ class _GameView extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(dialogContext),
-              child: Text(MaterialLocalizations.of(dialogContext).okButtonLabel),
+              child: Text(
+                MaterialLocalizations.of(dialogContext).okButtonLabel,
+              ),
             ),
           ],
         ),
@@ -185,6 +235,7 @@ class _InteractionPanel extends StatelessWidget {
     final game = context.watch<GameViewModel>();
     final language = context.watch<UserProgressViewModel>().languageCode;
     final options = level.getOptions(language);
+    final text = AppLocalizations.of(context);
 
     switch (level.interactionType) {
       case InteractionType.multipleChoice:
@@ -194,8 +245,10 @@ class _InteractionPanel extends StatelessWidget {
         );
       case InteractionType.tap:
         if (level.targetSequence != null) {
-          final maxValue = level.targetSequence!
-              .fold<int>(0, (maximum, value) => math.max(maximum, value));
+          final maxValue = level.targetSequence!.fold<int>(
+            0,
+            (maximum, value) => math.max(maximum, value),
+          );
           final count = math.max(
             (level.extraData?['itemsCount'] as num?)?.toInt() ?? 0,
             maxValue + 1,
@@ -207,15 +260,13 @@ class _InteractionPanel extends StatelessWidget {
             onReset: game.resetTaps,
           );
         }
-        final labels = options ??
+        final labels =
+            options ??
             List.generate(
               (level.extraData?['itemsCount'] as num?)?.toInt() ?? 4,
-              (index) => 'Option ${index + 1}',
+              (index) => '${text.translate('option')} ${index + 1}',
             );
-        return _ChoiceGrid(
-          labels: labels,
-          onSelected: game.addTapIndex,
-        );
+        return _ChoiceGrid(labels: labels, onSelected: game.addTapIndex);
       case InteractionType.dragDrop:
         return _DragPuzzle(level: level);
       case InteractionType.positioning:
@@ -244,19 +295,19 @@ class _ChoiceGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GridView.builder(
-        itemCount: labels.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 1.8,
-        ),
-        itemBuilder: (context, index) => ElevatedButton(
-          key: Key('answer_$index'),
-          onPressed: () => onSelected(index),
-          child: Text(labels[index], textAlign: TextAlign.center),
-        ),
-      );
+    itemCount: labels.length,
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      childAspectRatio: 1.8,
+    ),
+    itemBuilder: (context, index) => ElevatedButton(
+      key: Key('answer_$index'),
+      onPressed: () => onSelected(index),
+      child: Text(labels[index], textAlign: TextAlign.center),
+    ),
+  );
 }
 
 class _SequenceGrid extends StatelessWidget {
@@ -274,30 +325,33 @@ class _SequenceGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        children: [
-          Text('Sequence: ${sequence.map((value) => value + 1).join('  →  ')}'),
-          const SizedBox(height: 12),
-          Expanded(
-            child: GridView.builder(
-              itemCount: count,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) => ElevatedButton(
-                onPressed: () => onTap(index),
-                child: Text('${index + 1}', style: const TextStyle(fontSize: 22)),
-              ),
-            ),
+    children: [
+      Text(
+        '${AppLocalizations.of(context).translate('sequence')}: '
+        '${sequence.map((value) => value + 1).join('  →  ')}',
+      ),
+      const SizedBox(height: 12),
+      Expanded(
+        child: GridView.builder(
+          itemCount: count,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
           ),
-          TextButton.icon(
-            onPressed: onReset,
-            icon: const Icon(Icons.refresh),
-            label: Text(AppLocalizations.of(context).translate('reset')),
+          itemBuilder: (context, index) => ElevatedButton(
+            onPressed: () => onTap(index),
+            child: Text('${index + 1}', style: const TextStyle(fontSize: 22)),
           ),
-        ],
-      );
+        ),
+      ),
+      TextButton.icon(
+        onPressed: onReset,
+        icon: const Icon(Icons.refresh),
+        label: Text(AppLocalizations.of(context).translate('reset')),
+      ),
+    ],
+  );
 }
 
 class _DragPuzzle extends StatelessWidget {
@@ -327,7 +381,8 @@ class _DragPuzzle extends StatelessWidget {
         ),
         const SizedBox(height: 28),
         DragTarget<String>(
-          onAcceptWithDetails: (details) => game.setDragDrop(details.data, target),
+          onAcceptWithDetails: (details) =>
+              game.setDragDrop(details.data, target),
           builder: (context, candidates, rejected) => AnimatedContainer(
             duration: const Duration(milliseconds: 150),
             width: double.infinity,
@@ -346,7 +401,7 @@ class _DragPuzzle extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'Drop on ${_humanize(target)}',
+                '${AppLocalizations.of(context).translate('drop_on')} ${_humanize(target)}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
@@ -357,8 +412,14 @@ class _DragPuzzle extends StatelessWidget {
     );
   }
 
-  String _humanize(String value) =>
-      value.split('_').map((part) => part.isEmpty ? part : '${part[0].toUpperCase()}${part.substring(1)}').join(' ');
+  String _humanize(String value) => value
+      .split('_')
+      .map(
+        (part) => part.isEmpty
+            ? part
+            : '${part[0].toUpperCase()}${part.substring(1)}',
+      )
+      .join(' ');
 }
 
 class _PuzzleToken extends StatelessWidget {
@@ -368,13 +429,13 @@ class _PuzzleToken extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        decoration: BoxDecoration(
-          gradient: AppTheme.accentButtonGradient,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-      );
+    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+    decoration: BoxDecoration(
+      gradient: AppTheme.accentButtonGradient,
+      borderRadius: BorderRadius.circular(18),
+    ),
+    child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+  );
 }
 
 class _PositionPuzzle extends StatelessWidget {
@@ -385,23 +446,33 @@ class _PositionPuzzle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final game = context.watch<GameViewModel>();
+    final norm = game.positionNorm;
     return Column(
       children: [
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final x = game.positionCoord['x'] ?? 0.0;
-              final y = game.positionCoord['y'] ?? 0.0;
-              final maxX = constraints.maxWidth - 52;
-              final maxY = constraints.maxHeight - 52;
+              final maxX = (constraints.maxWidth - 52).clamp(
+                0.0,
+                double.infinity,
+              );
+              final maxY = (constraints.maxHeight - 52).clamp(
+                0.0,
+                double.infinity,
+              );
+              final targetNormX =
+                  (level.positionTarget?['x'] as num?)?.toDouble() ?? 0;
+              final targetNormY =
+                  (level.positionTarget?['y'] as num?)?.toDouble() ?? 0;
               return GestureDetector(
                 key: const Key('position_area'),
                 onPanUpdate: (details) {
                   final box = context.findRenderObject()! as RenderBox;
                   final position = box.globalToLocal(details.globalPosition);
-                  game.setPosition(
-                    position.dx.clamp(0, maxX).toDouble(),
-                    position.dy.clamp(0, maxY).toDouble(),
+                  if (maxX <= 0 || maxY <= 0) return;
+                  game.setPositionNorm(
+                    (position.dx.clamp(0, maxX) / maxX).toDouble(),
+                    (position.dy.clamp(0, maxY) / maxY).toDouble(),
                   );
                 },
                 child: Container(
@@ -414,17 +485,17 @@ class _PositionPuzzle extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned(
-                        left: (level.positionTarget?['x'] as num?)?.toDouble() ??
-                            0,
-                        top: (level.positionTarget?['y'] as num?)?.toDouble() ??
-                            0,
+                        left: (targetNormX * maxX).clamp(0.0, maxX).toDouble(),
+                        top: (targetNormY * maxY).clamp(0.0, maxY).toDouble(),
                         child: Container(
                           width: 48,
                           height: 48,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: AppTheme.secondaryColor.withValues(alpha: .3),
+                              color: AppTheme.secondaryColor.withValues(
+                                alpha: .3,
+                              ),
                               width: 2,
                             ),
                           ),
@@ -436,8 +507,8 @@ class _PositionPuzzle extends StatelessWidget {
                         child: Icon(Icons.ads_click, color: Colors.white38),
                       ),
                       Positioned(
-                        left: x.clamp(0, maxX),
-                        top: y.clamp(0, maxY),
+                        left: ((norm['x'] ?? 0) * maxX).toDouble(),
+                        top: ((norm['y'] ?? 0) * maxY).toDouble(),
                         child: const Icon(
                           Icons.star_rounded,
                           size: 48,
@@ -473,7 +544,9 @@ class _MultiStepPuzzle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final game = context.watch<GameViewModel>();
+    final language = context.watch<UserProgressViewModel>().languageCode;
     final total = (level.extraData?['totalSteps'] as num?)?.toInt() ?? 3;
+    final stepText = level.getStepText(language, game.multiStepCurrent);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -481,6 +554,16 @@ class _MultiStepPuzzle extends StatelessWidget {
           '${game.multiStepCurrent} / $total',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
+        if (stepText != null) ...[
+          const SizedBox(height: 10),
+          Text(
+            stepText,
+            key: const Key('multi_step_text'),
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge
+                ?.copyWith(fontWeight: FontWeight.w700),
+          ),
+        ],
         const SizedBox(height: 18),
         LinearProgressIndicator(value: game.multiStepCurrent / total),
         const SizedBox(height: 24),
@@ -491,7 +574,7 @@ class _MultiStepPuzzle extends StatelessWidget {
           label: Text(
             game.multiStepCurrent == total
                 ? AppLocalizations.of(context).translate('submit')
-                : 'Continue',
+                : AppLocalizations.of(context).translate('continue_label'),
           ),
         ),
       ],
@@ -519,25 +602,25 @@ class _TextAnswerPuzzleState extends State<_TextAnswerPuzzle> {
 
   @override
   Widget build(BuildContext context) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            key: const Key('text_answer'),
-            controller: _controller,
-            textInputAction: TextInputAction.done,
-            onSubmitted: widget.onSubmit,
-            decoration: const InputDecoration(
-              labelText: 'Your answer',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(height: 14),
-          ElevatedButton(
-            onPressed: () => widget.onSubmit(_controller.text),
-            child: Text(AppLocalizations.of(context).translate('submit')),
-          ),
-        ],
-      );
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      TextField(
+        key: const Key('text_answer'),
+        controller: _controller,
+        textInputAction: TextInputAction.done,
+        onSubmitted: widget.onSubmit,
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context).translate('your_answer'),
+          border: const OutlineInputBorder(),
+        ),
+      ),
+      const SizedBox(height: 14),
+      ElevatedButton(
+        onPressed: () => widget.onSubmit(_controller.text),
+        child: Text(AppLocalizations.of(context).translate('submit')),
+      ),
+    ],
+  );
 }
 
 class _MemoryPuzzle extends StatefulWidget {
@@ -570,10 +653,23 @@ class _MemoryPuzzleState extends State<_MemoryPuzzle> {
   @override
   Widget build(BuildContext context) {
     final game = context.watch<GameViewModel>();
+    final text = AppLocalizations.of(context);
     final sequence = widget.level.targetSequence ?? const <int>[];
+    final maxValue = sequence.fold<int>(
+      0,
+      (maximum, value) => math.max(maximum, value),
+    );
+    final count = math.max(
+      (widget.level.extraData?['itemsCount'] as num?)?.toInt() ?? 0,
+      math.max(maxValue + 1, 4),
+    );
     return Column(
       children: [
-        Text(_showSequence ? 'Memorize this sequence' : 'Repeat the sequence'),
+        Text(
+          _showSequence
+              ? text.translate('memorize')
+              : text.translate('repeat_sequence'),
+        ),
         const SizedBox(height: 14),
         if (_showSequence)
           Expanded(
@@ -581,16 +677,16 @@ class _MemoryPuzzleState extends State<_MemoryPuzzle> {
               child: Text(
                 sequence.map((value) => value + 1).join('   •   '),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppTheme.warningColor,
-                      fontWeight: FontWeight.w900,
-                    ),
+                  color: AppTheme.warningColor,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           )
         else
           Expanded(
             child: _SequenceGrid(
-              count: 10,
+              count: count,
               sequence: game.tapSequence,
               onTap: game.addTapIndex,
               onReset: game.resetTaps,
@@ -609,22 +705,25 @@ class _WrongAnswerBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: const EdgeInsets.only(top: 14),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-        decoration: BoxDecoration(
-          color: AppTheme.accentColor.withValues(alpha: .15),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: AppTheme.accentColor.withValues(alpha: .5)),
+    margin: const EdgeInsets.only(top: 14),
+    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+    decoration: BoxDecoration(
+      color: AppTheme.accentColor.withValues(alpha: .15),
+      borderRadius: BorderRadius.circular(14),
+      border: Border.all(color: AppTheme.accentColor.withValues(alpha: .5)),
+    ),
+    child: Row(
+      children: [
+        const Icon(Icons.info_outline, color: AppTheme.accentColor),
+        const SizedBox(width: 10),
+        Expanded(child: Text(message)),
+        TextButton(
+          onPressed: onRetry,
+          child: Text(AppLocalizations.of(context).translate('try_again')),
         ),
-        child: Row(
-          children: [
-            const Icon(Icons.info_outline, color: AppTheme.accentColor),
-            const SizedBox(width: 10),
-            Expanded(child: Text(message)),
-            TextButton(onPressed: onRetry, child: Text(AppLocalizations.of(context).translate('try_again'))),
-          ],
-        ),
-      );
+      ],
+    ),
+  );
 }
 
 class _CompletionPanel extends StatelessWidget {
@@ -637,66 +736,79 @@ class _CompletionPanel extends StatelessWidget {
     final game = context.read<GameViewModel>();
     final progress = context.watch<UserProgressViewModel>();
     final text = AppLocalizations.of(context);
-    final isHindi = progress.languageCode == 'hi';
     final nextId = level.id + 1;
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.emoji_events_rounded,
-                size: 92, color: AppTheme.warningColor),
-            const SizedBox(height: 12),
-            Text(
-              text.translate('level_cleared'),
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium
-                  ?.copyWith(fontWeight: FontWeight.w900),
+    return Stack(
+      children: [
+        const Positioned.fill(child: IgnorePointer(child: ConfettiBurst())),
+        Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.emoji_events_rounded,
+                  size: 92,
+                  color: AppTheme.warningColor,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  text.translate('level_cleared'),
+                  style: Theme.of(context).textTheme.headlineMedium
+                      ?.copyWith(fontWeight: FontWeight.w900),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '★' * game.calculateStars(),
+                  style: const TextStyle(
+                    color: AppTheme.warningColor,
+                    fontSize: 34,
+                    letterSpacing: 5,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Text(
+                  '${text.translate('explanation')}\n${level.getExplanation(progress.languageCode)}',
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton.icon(
+                  key: const Key('next_level_button'),
+                  onPressed: nextId <= AppConstants.totalLevels
+                      ? () => Navigator.of(context).pushReplacement(
+                          MaterialPageRoute<void>(
+                            builder: (_) => GameScreen(levelId: nextId),
+                          ),
+                        )
+                      : () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.arrow_forward_rounded),
+                  label: Text(
+                    text.translate(
+                      nextId <= AppConstants.totalLevels
+                          ? 'next_level'
+                          : 'levels',
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: game.retryLevel,
+                  child: Text(text.translate('replay')),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(
+                    MaterialLocalizations.of(context).backButtonTooltip,
+                  ),
+                ),
+                if (game.hintsRevealedCount == 0)
+                  Text(
+                    '+${level.rewardCoins} ${text.translate('coins')}',
+                    style: const TextStyle(color: AppTheme.successColor),
+                  ),
+              ],
             ),
-            const SizedBox(height: 8),
-            Text(
-              '★' * game.calculateStars(),
-              style: const TextStyle(
-                  color: AppTheme.warningColor, fontSize: 34, letterSpacing: 5),
-            ),
-            const SizedBox(height: 14),
-            Text(
-              '${text.translate('explanation')}\n${level.getExplanation(progress.languageCode)}',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              key: const Key('next_level_button'),
-              onPressed: nextId <= AppConstants.totalLevels
-                  ? () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute<void>(
-                          builder: (_) => GameScreen(levelId: nextId),
-                        ),
-                      )
-                  : () => Navigator.of(context).pop(),
-              icon: const Icon(Icons.arrow_forward_rounded),
-              label: Text(text.translate(nextId <= AppConstants.totalLevels
-                  ? 'next_level'
-                  : 'levels')),
-            ),
-            TextButton(
-              onPressed: game.retryLevel,
-              child: Text(text.translate('replay')),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(MaterialLocalizations.of(context).backButtonTooltip),
-            ),
-            if (game.hintsRevealedCount == 0)
-              Text(
-                '+${level.rewardCoins} ${text.translate('coins')}',
-                style: const TextStyle(color: AppTheme.successColor),
-              ),
-            if (isHindi) const SizedBox.shrink(),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

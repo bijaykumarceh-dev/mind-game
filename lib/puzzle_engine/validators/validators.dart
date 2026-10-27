@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import '../../models/interaction_type.dart';
 import '../../models/puzzle_level.dart';
 
@@ -43,16 +44,23 @@ class PuzzleEngine {
     }
   }
 
-  static ValidationResult _validateChoice(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validateChoice(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     if (userInteraction is int) {
-      if (level.solutionIndex != null && userInteraction == level.solutionIndex) {
+      if (level.solutionIndex != null &&
+          userInteraction == level.solutionIndex) {
         return ValidationResult.success;
       }
     }
     return ValidationResult.failure;
   }
 
-  static ValidationResult _validateTap(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validateTap(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     if (level.targetSequence != null) {
       if (userInteraction is List<int>) {
         if (userInteraction.length == level.targetSequence!.length) {
@@ -73,7 +81,10 @@ class PuzzleEngine {
     return ValidationResult.failure;
   }
 
-  static ValidationResult _validateDragDrop(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validateDragDrop(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     if (userInteraction is Map<String, String>) {
       final source = userInteraction['source'];
       final target = userInteraction['target'];
@@ -84,18 +95,26 @@ class PuzzleEngine {
     return ValidationResult.failure;
   }
 
-  static ValidationResult _validatePositioning(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validatePositioning(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     if (userInteraction is Map<String, double>) {
       final target = level.positionTarget;
       if (target != null) {
+        // Targets are normalized to the play area (0..1) so a level is
+        // solvable on every screen size.
         final double targetX = (target['x'] as num).toDouble();
         final double targetY = (target['y'] as num).toDouble();
-        final double tolerance = (target['tolerance'] as num?)?.toDouble() ?? 30.0;
+        final double tolerance =
+            (target['tolerance'] as num?)?.toDouble() ?? 0.1;
 
         final double userX = userInteraction['x'] ?? 0.0;
         final double userY = userInteraction['y'] ?? 0.0;
 
-        final distance = sqrt(pow(userX - targetX, 2) + pow(userY - targetY, 2));
+        final distance = sqrt(
+          pow(userX - targetX, 2) + pow(userY - targetY, 2),
+        );
         if (distance <= tolerance) {
           return ValidationResult.success;
         }
@@ -104,7 +123,10 @@ class PuzzleEngine {
     return ValidationResult.failure;
   }
 
-  static ValidationResult _validateMultiStep(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validateMultiStep(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     if (userInteraction is Map<String, dynamic>) {
       final currentStep = (userInteraction['step'] as num?)?.toInt() ?? 0;
       final totalSteps = (level.extraData?['totalSteps'] as num?)?.toInt() ?? 1;
@@ -122,7 +144,10 @@ class PuzzleEngine {
     return ValidationResult.failure;
   }
 
-  static ValidationResult _validatePatternObservation(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validatePatternObservation(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     final expectedAnswer = level.extraData?['answer'];
     if (expectedAnswer != null) {
       if (userInteraction.toString().trim().toLowerCase() ==
@@ -137,7 +162,10 @@ class PuzzleEngine {
     return ValidationResult.failure;
   }
 
-  static ValidationResult _validateTimedMemory(PuzzleLevel level, dynamic userInteraction) {
+  static ValidationResult _validateTimedMemory(
+    PuzzleLevel level,
+    dynamic userInteraction,
+  ) {
     if (userInteraction is List<int> && level.targetSequence != null) {
       if (userInteraction.length == level.targetSequence!.length) {
         for (int i = 0; i < userInteraction.length; i++) {

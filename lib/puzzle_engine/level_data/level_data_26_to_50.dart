@@ -13,16 +13,17 @@ final List<PuzzleLevel> levels26To50 = [
     instructionEn: 'Solve the riddle!',
     instructionHi: 'पहेली सुलझाएं!',
     explanationEn: 'A Keyboard has keys, spacebar, enter key, and no locks!',
-    explanationHi: 'कीबोर्ड (Keyboard) में keys, spacebar और enter key होते हैं!',
+    explanationHi:
+        'कीबोर्ड (Keyboard) में keys, spacebar और enter key होते हैं!',
     hintsEn: [
       'It is used with computers.',
       'You type on it.',
-      'Select "Keyboard".'
+      'Select "Keyboard".',
     ],
     hintsHi: [
       'यह कंप्यूटर के साथ उपयोग किया जाता है।',
       'आप इस पर टाइप करते हैं।',
-      '"कीबोर्ड" चुनें।'
+      '"कीबोर्ड" चुनें।',
     ],
     options: ['Piano', 'Keyboard', 'Map', 'Secret Box'],
     optionsHi: ['पियानो', 'कीबोर्ड', 'नक्शा', 'गुप्त बक्सा'],
@@ -39,16 +40,17 @@ final List<PuzzleLevel> levels26To50 = [
     instructionEn: 'Look for antenna ears!',
     instructionHi: 'एंटीना वाले कानों को खोजें!',
     explanationEn: 'Alien #2 was disguising in a suit with tiny antenna ears sticking out!',
-    explanationHi: 'एलियन #2 सूट पहनकर छिपा हुआ था, जिसके छोटे एंटीना कान बाहर निकले थे!',
+    explanationHi:
+        'एलियन #2 सूट पहनकर छिपा हुआ था, जिसके छोटे एंटीना कान बाहर निकले थे!',
     hintsEn: [
       'Look at head helmet accessories.',
       'Check the top center character.',
-      'Tap Alien (Index 1).'
+      'Tap Alien (Index 1).',
     ],
     hintsHi: [
       'हेलमेट पर लगे सामान को देखें।',
       'ऊपर बीच वाले पात्र को देखें।',
-      'एलियन (इंडेक्स 1) पर टैप करें।'
+      'एलियन (इंडेक्स 1) पर टैप करें।',
     ],
     solutionIndex: 1,
   ),
@@ -67,12 +69,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Fire comes from matchstick.',
       'Candle wick needs fire.',
-      'Drag Matchstick -> Candle Wick.'
+      'Drag Matchstick -> Candle Wick.',
     ],
     hintsHi: [
       'माचिस से आग मिलती है।',
       'मोमबत्ती की बत्ती को आग चाहिए।',
-      'माचिस को मोमबत्ती पर लाएं।'
+      'माचिस को मोमबत्ती पर लाएं।',
     ],
     dragSourceId: 'lit_matchstick',
     dragTargetId: 'candle_wick',
@@ -89,15 +91,11 @@ final List<PuzzleLevel> levels26To50 = [
     instructionHi: 'दोगुना करने वाला पैटर्न लागू करें।',
     explanationEn: '24 x 2 = 48!',
     explanationHi: '24 x 2 = 48!',
-    hintsEn: [
-      'Multiply prior term by 2.',
-      '24 doubled.',
-      'Answer is 48.'
-    ],
+    hintsEn: ['Multiply prior term by 2.', '24 doubled.', 'Answer is 48.'],
     hintsHi: [
       'पिछली संख्या को 2 से गुणा करें।',
       '24 का दोगुना।',
-      'उत्तर 48 है।'
+      'उत्तर 48 है।',
     ],
     extraData: {'answer': '48'},
   ),
@@ -116,14 +114,14 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'King is standing in center.',
       'Move crown above forehead.',
-      'Target position is (180, 100).'
+      'Aim for the outlined circle.',
     ],
     hintsHi: [
       'राजा बीच में खड़े हैं।',
       'मुकुट को माथे के ऊपर लाएं।',
-      'लक्ष्य स्थिति (180, 100) है।'
+      'घेरे हुए गोल निशान को लक्ष्य करें।',
     ],
-    positionTarget: {'x': 180.0, 'y': 100.0, 'tolerance': 35.0},
+    positionTarget: {'x': 0.62, 'y': 0.29, 'tolerance': 0.12},
   ),
 
   // Level 31
@@ -133,21 +131,35 @@ final List<PuzzleLevel> levels26To50 = [
     interactionType: InteractionType.multiStep,
     questionEn: 'Bake a delicious birthday cake!',
     questionHi: 'एक स्वादिष्ट जन्मदिन का केक बनाएं!',
-    instructionEn: 'Step 1: Mix batter. Step 2: Bake in oven. Step 3: Put candles on top.',
+    instructionEn:
+        'Step 1: Mix batter. Step 2: Bake in oven. Step 3: Put candles on top.',
     instructionHi: 'चरण 1: घोल मिलाएं। चरण 2: ओवन में पकाएं। चरण 3: ऊपर मोमबत्तियां लगाएं।',
-    explanationEn: 'Tada! A fresh 3-tier birthday cake is ready with lit candles!',
+    explanationEn:
+        'Tada! A fresh 3-tier birthday cake is ready with lit candles!',
     explanationHi: 'ताज़ा जन्मदिन का केक तैयार है!',
     hintsEn: [
       'Mix ingredients before baking.',
       'Bake before decorating.',
-      'Complete all 3 baking steps.'
+      'Complete all 3 baking steps.',
     ],
     hintsHi: [
       'पकाने से पहले मिलाएं।',
       'सजाने से पहले ओवन में रखें।',
-      '3 चरणों को पूरा करें।'
+      '3 चरणों को पूरा करें।',
     ],
-    extraData: {'totalSteps': 3},
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Mix the batter',
+        'Bake the cake in the oven',
+        'Put candles on top',
+      ],
+      'stepTextsHi': [
+        'घोल को अच्छी तरह मिलाएं',
+        'केक को ओवन में पकाएं',
+        'ऊपर मोमबत्तियां लगाएं',
+      ],
+    },
   ),
 
   // Level 32
@@ -164,12 +176,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'It increases every birthday.',
       'Number of years alive.',
-      'Select "Your Age".'
+      'Select "Your Age".',
     ],
     hintsHi: [
       'यह हर जन्मदिन पर बढ़ती है।',
       'जीवित रहने के वर्ष।',
-      '"आपकी उम्र" चुनें।'
+      '"आपकी उम्र" चुनें।',
     ],
     options: ['Balloon', 'Your Age', 'Rainfall', 'Rocket'],
     optionsHi: ['गुब्बारा', 'आपकी उम्र', 'बारिश', 'रॉकेट'],
@@ -185,17 +197,18 @@ final List<PuzzleLevel> levels26To50 = [
     questionHi: 'कौन सा कॉफी कप सबसे पहले भरेगा?',
     instructionEn: 'Follow sealed pipe joints!',
     instructionHi: 'बंद पाइप जोड़ों को ध्यान से देखें!',
-    explanationEn: 'Cup #3 is the only one with an unblocked continuous flow pipe!',
+    explanationEn:
+        'Cup #3 is the only one with an unblocked continuous flow pipe!',
     explanationHi: 'कप #3 एकमात्र ऐसा कप है जिसका पाइप कहीं से बंद नहीं है!',
     hintsEn: [
       'Pipe to Cup 1 is blocked.',
       'Pipe to Cup 2 has a hole.',
-      'Tap Cup 3.'
+      'Tap Cup 3.',
     ],
     hintsHi: [
       'कप 1 का पाइप बंद है।',
       'कप 2 का पाइप टूटा है।',
-      'कप 3 पर टैप करें।'
+      'कप 3 पर टैप करें।',
     ],
     solutionIndex: 2,
     extraData: {'itemsCount': 4},
@@ -212,16 +225,8 @@ final List<PuzzleLevel> levels26To50 = [
     instructionHi: '9, फिर 4, फिर 1, फिर 7 दर्ज करें।',
     explanationEn: 'Access Granted! Security passcode accepted.',
     explanationHi: 'अनुमति मिली! पासकोड सही है।',
-    hintsEn: [
-      'Starts with 9.',
-      'Ends with 7.',
-      'Sequence: [9, 4, 1, 7]'
-    ],
-    hintsHi: [
-      '9 से शुरू करें।',
-      '7 पर समाप्त करें।',
-      'क्रम: [9, 4, 1, 7]'
-    ],
+    hintsEn: ['Starts with 9.', 'Ends with 7.', 'Sequence: [9, 4, 1, 7]'],
+    hintsHi: ['9 से शुरू करें।', '7 पर समाप्त करें।', 'क्रम: [9, 4, 1, 7]'],
     targetSequence: [9, 4, 1, 7],
   ),
 
@@ -239,12 +244,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Position net at landing target.',
       'Center of bottom screen.',
-      'Drag Net -> Landing Target.'
+      'Drag Net -> Landing Target.',
     ],
     hintsHi: [
       'जाल को गिरने की जगह पर रखें।',
       'स्क्रीन के नीचे बीच में।',
-      'जाल को लक्ष्य पर रखें।'
+      'जाल को लक्ष्य पर रखें।',
     ],
     dragSourceId: 'star_net',
     dragTargetId: 'landing_target',
@@ -264,12 +269,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Does January have 28 days? Yes.',
       'Does March have 28 days? Yes.',
-      'Select "All 12 months".'
+      'Select "All 12 months".',
     ],
     hintsHi: [
       'क्या जनवरी में 28 दिन होते हैं? हाँ।',
       'क्या मार्च में होते हैं? हाँ।',
-      '"सभी 12 महीने" चुनें।'
+      '"सभी 12 महीने" चुनें।',
     ],
     options: ['1 Month (Feb)', '6 Months', '12 Months', '0 Months'],
     optionsHi: ['१ महीना (फरवरी)', '६ महीने', '१२ महीने', '० महीने'],
@@ -285,17 +290,19 @@ final List<PuzzleLevel> levels26To50 = [
     questionHi: 'इनमें से सबसे अलग क्या है? सेब, केला, संतरा, आलू',
     instructionEn: 'Classify fruits vs vegetables.',
     instructionHi: 'फल और सब्जी का अंतर पहचानें।',
-    explanationEn: 'Potato is a vegetable root, while all others are sweet fruits!',
-    explanationHi: 'आलू (Potato) एक सब्जी/सब्जी की जड़ है, जबकि बाकी सभी फल हैं!',
+    explanationEn:
+        'Potato is a vegetable root, while all others are sweet fruits!',
+    explanationHi:
+        'आलू (Potato) एक सब्जी/सब्जी की जड़ है, जबकि बाकी सभी फल हैं!',
     hintsEn: [
       'Three of them grow on trees.',
       'One grows underground.',
-      'Answer is Potato.'
+      'Answer is Potato.',
     ],
     hintsHi: [
       'इनमें से 3 पेड़ों पर उगते हैं।',
       '1 ज़मीन के नीचे उगता है।',
-      'उत्तर आलू है।'
+      'उत्तर आलू है।',
     ],
     extraData: {'answer': 'Potato'},
   ),
@@ -305,7 +312,8 @@ final List<PuzzleLevel> levels26To50 = [
     id: 38,
     category: PuzzleCategory.positioning,
     interactionType: InteractionType.positioning,
-    questionEn: 'Align the battery poles (+ and -) correctly into the flashlight!',
+    questionEn:
+        'Align the battery poles (+ and -) correctly into the flashlight!',
     questionHi: 'टॉर्च में बैटरी के ध्रुवों (+ और -) को सही ढंग से बैठाएं!',
     instructionEn: 'Drag battery positive pole to top slot.',
     instructionHi: 'बैटरी के धनात्मक (+) सिरे को ऊपर की ओर खिसकाएं।',
@@ -314,14 +322,14 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Plus sign faces upwards.',
       'Insert into tube slot.',
-      'Position is (160, 180).'
+      'Drop it on the outlined circle.',
     ],
     hintsHi: [
       'प्लस (+) का निशान ऊपर होना चाहिए।',
       'ट्यूब के अंदर खिसकाएं।',
-      'स्थिति (160, 180) है।'
+      'घेरे हुए गोल निशान पर छोड़ दें।',
     ],
-    positionTarget: {'x': 160.0, 'y': 180.0, 'tolerance': 30.0},
+    positionTarget: {'x': 0.55, 'y': 0.51, 'tolerance': 0.10},
   ),
 
   // Level 39
@@ -333,20 +341,27 @@ final List<PuzzleLevel> levels26To50 = [
     questionHi: 'यदि आप दौड़ में दूसरे (2nd) स्थान वाले व्यक्ति को पीछे छोड़ देते हैं, तो आप किस स्थान पर आ जाएंगे?',
     instructionEn: 'Think carefully about race positions!',
     instructionHi: 'दौड़ के स्थानों के बारे में ध्यान से सोचें!',
-    explanationEn: 'You took the 2nd person\'s spot, so you are now in 2nd place!',
-    explanationHi: 'आपने दूसरे व्यक्ति की जगह ले ली, इसलिए अब आप 2nd स्थान पर हैं!',
+    explanationEn:
+        'You took the 2nd person\'s spot, so you are now in 2nd place!',
+    explanationHi:
+        'आपने दूसरे व्यक्ति की जगह ले ली, इसलिए अब आप 2nd स्थान पर हैं!',
     hintsEn: [
       'Did you pass the 1st place runner? No.',
       'You replaced runner #2.',
-      'Select "2nd Place".'
+      'Select "2nd Place".',
     ],
     hintsHi: [
       'क्या आपने पहले वाले को पीछे छोड़ा? नहीं।',
       'आपने दूसरे वाले की जगह ली।',
-      '"2nd स्थान" चुनें।'
+      '"2nd स्थान" चुनें।',
     ],
     options: ['1st Place', '2nd Place', '3rd Place', 'Last Place'],
-    optionsHi: ['पहला स्थान', 'दूसरा (2nd) स्थान', 'तीसरा स्थान', 'अंतिम स्थान'],
+    optionsHi: [
+      'पहला स्थान',
+      'दूसरा (2nd) स्थान',
+      'तीसरा स्थान',
+      'अंतिम स्थान',
+    ],
     solutionIndex: 1,
   ),
 
@@ -364,12 +379,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Sharp object pops rubber.',
       'Pin is on the left table.',
-      'Drag Pin -> Red Balloon.'
+      'Drag Pin -> Red Balloon.',
     ],
     hintsHi: [
       'नुकीली चीज से गुब्बारा फूटता है।',
       'पिन बाईं मेज पर है।',
-      'पिन को गुब्बारे पर लाएं।'
+      'पिन को गुब्बारे पर लाएं।',
     ],
     dragSourceId: 'sharp_pin',
     dragTargetId: 'red_balloon',
@@ -382,21 +397,32 @@ final List<PuzzleLevel> levels26To50 = [
     interactionType: InteractionType.multiStep,
     questionEn: 'Grow a blooming sunflower from a seed!',
     questionHi: 'बीज से खिलता हुआ सूरजमुखी का फूल उगाएं!',
-    instructionEn: 'Step 1: Plant seed in soil. Step 2: Water soil. Step 3: Sun shines.',
-    instructionHi: 'चरण 1: मिट्टी में बीज बोएं। चरण 2: पानी दें। चरण 3: धूप आने दें।',
-    explanationEn: 'A vibrant yellow sunflower opens its petals towards the sun!',
+    instructionEn:
+        'Step 1: Plant seed in soil. Step 2: Water soil. Step 3: Sun shines.',
+    instructionHi:
+        'चरण 1: मिट्टी में बीज बोएं। चरण 2: पानी दें। चरण 3: धूप आने दें।',
+    explanationEn:
+        'A vibrant yellow sunflower opens its petals towards the sun!',
     explanationHi: 'एक खूबसूरत पीला सूरजमुखी खिल गया!',
     hintsEn: [
       'Seed comes first.',
       'Water encourages roots.',
-      'Follow 3 growth steps.'
+      'Follow 3 growth steps.',
     ],
-    hintsHi: [
-      'पहले बीज बोएं।',
-      'फिर पानी दें।',
-      '3 चरणों का पालन करें।'
-    ],
-    extraData: {'totalSteps': 3},
+    hintsHi: ['पहले बीज बोएं।', 'फिर पानी दें।', '3 चरणों का पालन करें।'],
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Plant the seed in the soil',
+        'Water the soil',
+        'Let the sun shine on it',
+      ],
+      'stepTextsHi': [
+        'मिट्टी में बीज बोएं',
+        'मिट्टी को पानी दें',
+        'धूप आने दें',
+      ],
+    },
   ),
 
   // Level 42
@@ -408,17 +434,18 @@ final List<PuzzleLevel> levels26To50 = [
     questionHi: 'कांच के रत्नों के बीच असली हीरे पर टैप करें!',
     instructionEn: 'The real diamond reflects rainbow spectrum light sparkles!',
     instructionHi: 'असली हीरा सतरंगी रोशनी की चमक बिखेरता है!',
-    explanationEn: 'Diamond #3 refracts light into brilliant colorful sparkles!',
+    explanationEn:
+        'Diamond #3 refracts light into brilliant colorful sparkles!',
     explanationHi: 'हीरा #3 रोशनी को सतरंगी चमक में बदलता है!',
     hintsEn: [
       'Look for multicolored sparkles.',
       'Top right gemstone.',
-      'Tap Diamond 3.'
+      'Tap Diamond 3.',
     ],
     hintsHi: [
       'सतरंगी चमक को देखें।',
       'ऊपर दाईं ओर का रत्न।',
-      'हीरा 3 पर टैप करें।'
+      'हीरा 3 पर टैप करें।',
     ],
     solutionIndex: 2,
     extraData: {'itemsCount': 4},
@@ -438,12 +465,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Do multiplication first: (5 x 0 = 0).',
       'Add remaining fives: 5 + 0 + 5.',
-      'Answer is 10.'
+      'Answer is 10.',
     ],
     hintsHi: [
       'पहले गुणा करें: (5 x 0 = 0)।',
       'फिर जोड़ें: 5 + 0 + 5।',
-      'उत्तर 10 है।'
+      'उत्तर 10 है।',
     ],
     extraData: {'answer': '10'},
   ),
@@ -462,13 +489,9 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Yellow is index 0.',
       'Blue is index 1, Red is 2.',
-      'Sequence: [0, 1, 2, 0]'
+      'Sequence: [0, 1, 2, 0]',
     ],
-    hintsHi: [
-      'पीला इंडेक्स 0 है।',
-      'नीला 1, लाल 2 है।',
-      'क्रम: [0, 1, 2, 0]'
-    ],
+    hintsHi: ['पीला इंडेक्स 0 है।', 'नीला 1, लाल 2 है।', 'क्रम: [0, 1, 2, 0]'],
     targetSequence: [0, 1, 2, 0],
   ),
 
@@ -486,12 +509,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Whose father is it?',
       'Check the possessive name in sentence 1.',
-      'Select "Mary".'
+      'Select "Mary".',
     ],
     hintsHi: [
       'ये किसके पिता हैं?',
       'पहले वाक्य में नाम पढ़ें।',
-      '"मैरी" चुनें।'
+      '"मैरी" चुनें।',
     ],
     options: ['Nunu', 'Mary', 'Nina', 'Nena'],
     optionsHi: ['नुनू', 'मैरी', 'नीना', 'नेना'],
@@ -512,12 +535,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Floatation device saves drowning items.',
       'Lifebuoy ring is on poolside.',
-      'Drag Lifebuoy -> Teddy Bear.'
+      'Drag Lifebuoy -> Teddy Bear.',
     ],
     hintsHi: [
       'लाइफबॉय चीज़ों को तैरने में मदद करता है।',
       'लाइफबॉय पूल किनारे है।',
-      'लाइफबॉय को टेडी बियर पर रखें।'
+      'लाइफबॉय को टेडी बियर पर रखें।',
     ],
     dragSourceId: 'lifebuoy_ring',
     dragTargetId: 'teddy_bear',
@@ -530,21 +553,21 @@ final List<PuzzleLevel> levels26To50 = [
     interactionType: InteractionType.positioning,
     questionEn: 'Hang the painting straight on the wall hook!',
     questionHi: 'पेंटिंग को दीवार के हुक पर सीधा टांगें!',
-    instructionEn: 'Position painting at (150, 120).',
-    instructionHi: 'पेंटिंग को खींचकर (150, 120) स्थिति पर रखें।',
+    instructionEn: 'Place the painting on the marked circle.',
+    instructionHi: 'पेंटिंग को खींचकर चिह्नित गोल निशान पर रखें।',
     explanationEn: 'The frame is level and hanging neatly on the wall!',
     explanationHi: 'पेंटिंग दीवार पर एकदम सीधी टंग गई है!',
     hintsEn: [
       'Center top string over hook.',
       'Move slightly up.',
-      'Target position is (150, 120).'
+      'Target position is the outlined circle.',
     ],
     hintsHi: [
       'धागे को हुक के ऊपर लाएं।',
       'थोड़ा ऊपर की ओर खिसकाएं।',
-      'लक्ष्य स्थिति (150, 120) है।'
+      'लक्ष्य घेरा हुआ गोल निशान है।',
     ],
-    positionTarget: {'x': 150.0, 'y': 120.0, 'tolerance': 30.0},
+    positionTarget: {'x': 0.52, 'y': 0.34, 'tolerance': 0.10},
   ),
 
   // Level 48
@@ -556,17 +579,19 @@ final List<PuzzleLevel> levels26To50 = [
     questionHi: 'पैटर्न पूरा करें: वृत्त, वर्ग, वृत्त, वर्ग, ?',
     instructionEn: 'Alternating shape pattern.',
     instructionHi: 'एकांतर (एक के बाद एक) पैटर्न।',
-    explanationEn: 'The sequence alternates between Circle and Square, so next is Circle!',
-    explanationHi: 'पैटर्न वृत्त और वर्ग के बीच बदल रहा है, इसलिए अगला वृत्त होगा!',
+    explanationEn:
+        'The sequence alternates between Circle and Square, so next is Circle!',
+    explanationHi:
+        'पैटर्न वृत्त और वर्ग के बीच बदल रहा है, इसलिए अगला वृत्त होगा!',
     hintsEn: [
       'What comes after Square?',
       'Check alternating terms.',
-      'Answer is Circle.'
+      'Answer is Circle.',
     ],
     hintsHi: [
       'वर्ग के बाद क्या आता है?',
       'बारी-बारी आने वाले पैटर्न को देखें।',
-      'उत्तर वृत्त है।'
+      'उत्तर वृत्त है।',
     ],
     extraData: {'answer': 'Circle'},
   ),
@@ -585,12 +610,12 @@ final List<PuzzleLevel> levels26To50 = [
     hintsEn: [
       'Take Pill 1 immediately at start (Minute 0).',
       'Take Pill 2 at 30 minutes.',
-      'Take Pill 3 at 60 minutes (1 Hour).'
+      'Take Pill 3 at 60 minutes (1 Hour).',
     ],
     hintsHi: [
       'पहली गोली तुरंत लें (0 मिनट)।',
       'दूसरी गोली 30 मिनट पर लें।',
-      'तीसरी गोली 60 मिनट (1 घंटा) पर लें।'
+      'तीसरी गोली 60 मिनट (1 घंटा) पर लें।',
     ],
     options: ['1.5 Hours', '1 Hour', '2 Hours', '3 Hours'],
     optionsHi: ['१.५ घंटे', '१ घंटा', '२ घंटे', '३ घंटे'],
@@ -604,20 +629,35 @@ final List<PuzzleLevel> levels26To50 = [
     interactionType: InteractionType.multiStep,
     questionEn: 'Launch the space rocket to the moon!',
     questionHi: 'अंतरिक्ष रॉकेट को चांद पर लॉन्च करें!',
-    instructionEn: 'Step 1: Fuel up. Step 2: Countdown 3-2-1. Step 3: Ignition!',
-    instructionHi: 'चरण 1: ईंधन भरें। चरण 2: उल्टी गिनती 3-2-1। चरण 3: इग्निशन (लॉन्च)!',
-    explanationEn: 'BOOM! The rocket blasts off through the clouds into outer space!',
+    instructionEn:
+        'Step 1: Fuel up. Step 2: Countdown 3-2-1. Step 3: Ignition!',
+    instructionHi:
+        'चरण 1: ईंधन भरें। चरण 2: उल्टी गिनती 3-2-1। चरण 3: इग्निशन (लॉन्च)!',
+    explanationEn:
+        'BOOM! The rocket blasts off through the clouds into outer space!',
     explanationHi: 'रॉकेट बादलों को चीरता हुआ अंतरिक्ष की ओर निकल पड़ा!',
     hintsEn: [
       'Fill tank before countdown.',
       'Press launch ignition button after countdown.',
-      'Follow 3 launch phases.'
+      'Follow 3 launch phases.',
     ],
     hintsHi: [
       'उल्टी गिनती से पहले ईंधन भरें।',
       'गिनती के बाद इग्निशन दबाएं।',
-      '3 चरणों का पालन करें।'
+      '3 चरणों का पालन करें।',
     ],
-    extraData: {'totalSteps': 3},
+    extraData: {
+      'totalSteps': 3,
+      'stepTextsEn': [
+        'Fill the fuel tank',
+        'Count down 3 - 2 - 1',
+        'Press the ignition button',
+      ],
+      'stepTextsHi': [
+        'ईंधन टैंक भरें',
+        'उल्टी गिनती 3 - 2 - 1',
+        'इग्निशन बटन दबाएं',
+      ],
+    },
   ),
 ];

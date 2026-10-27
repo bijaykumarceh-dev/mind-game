@@ -13,20 +13,13 @@ class AppTheme {
   static const LinearGradient backgroundGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [
-      Color(0xFF0F0C29),
-      Color(0xFF24243E),
-      Color(0xFF302B63),
-    ],
+    colors: [Color(0xFF0F0C29), Color(0xFF24243E), Color(0xFF302B63)],
   );
 
   static const LinearGradient cardGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [
-      Color(0xFF2D2B55),
-      Color(0xFF1E1B4B),
-    ],
+    colors: [Color(0xFF2D2B55), Color(0xFF1E1B4B)],
   );
 
   static const LinearGradient accentButtonGradient = LinearGradient(
@@ -52,15 +45,11 @@ class AppTheme {
       cardTheme: CardThemeData(
         color: cardBgColor,
         elevation: 6,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: cardBgColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -71,10 +60,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );
