@@ -7,7 +7,7 @@ include assets or copied level text from another game.
 
 ## Latest Android release
 
-Download the [Mind Twist v1.0.1 APK](https://github.com/bijaykumarceh-dev/mind-game/releases/download/v1.0.1/app-release.apk)
+Download the [Mind Twist v1.1.0 APK](https://github.com/bijaykumarceh-dev/mind-game/releases/download/v1.1.0/app-release.apk)
 or visit the [GitHub Releases page](https://github.com/bijaykumarceh-dev/mind-game/releases).
 This APK is release-mode but uses the repository's debug signing setup; use it
 for sideloading/testing, not as a Play Store production upload.
