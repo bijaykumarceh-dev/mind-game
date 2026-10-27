@@ -137,6 +137,12 @@ To build a Play Store bundle instead:
 flutter build appbundle --release
 ```
 
+Pushing a version tag matching `v*` runs the GitHub Actions workflow at
+[`android-release.yml`](./.github/workflows/android-release.yml). If analysis,
+tests, and the Android build succeed, it creates a GitHub Release and attaches
+the APK. Published downloads appear on the repository's
+[Releases page](https://github.com/bijaykumarceh-dev/mind-game/releases).
+
 The Android release build currently uses the debug signing configuration from
 [`android/app/build.gradle.kts`](./android/app/build.gradle.kts). That is useful
 for local installation/testing, **not for a production Play Store release**.
